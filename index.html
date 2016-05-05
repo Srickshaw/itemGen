@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>		
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				font-family: 'Roboto Condensed';
+			}
+			.weaponContainer { 
+                border: 2px solid #ccc;
+				width: 500px;
+				margin: 20px;;
+				position: relative;
+                display: inline-block;
+                vertical-align: top;
+			}
+			.weaponContainer p {
+				margin: 0;
+			}
+			
+			.weaponContainer > p {
+				border-top: 1px solid #ccc;
+			}
+			
+			.wName {
+				font-weight: bold;				
+				padding: 10px;
+				color: white;
+			}
+            .weaponContainer > p p.wMod { margin-left: 25px; }
+            .wrapper {
+                width: 1170px;
+                margin: 0 auto;
+            }
+		</style>	
+		<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+	</head>
+	<body>	
+        <button id="itemGen">Click me</button>
+		<div id="weaponContainer" class="wrapper">
+		</div>
+		<script src="js/itemGen.js" type="text/javascript"></script>
+	</body>
+</html>

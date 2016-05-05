@@ -1,0 +1,487 @@
+{
+	"weapTypes": [
+    {
+        "name": "Dagger",
+        "baseQuality": 5,
+        "minDam": 2,
+        "maxDam": 5,
+        "baseCost": 25
+    },
+    {
+        "name": "Short Sword",
+        "baseQuality": 8,
+        "minDam": 5,
+        "maxDam": 9,
+        "baseCost": 25
+    },
+    {
+        "name": "Bec de Corbin",
+        "baseQuality": 18,
+        "minDam": 12,
+        "maxDam": 21,
+        "baseCost": 300
+    },
+    {
+        "name": "Poniard",
+        "baseQuality": 21,
+        "minDam": 14,
+        "maxDam": 28,
+        "baseCost": 325
+    },
+    {
+        "name": "Flamberge",
+        "baseQuality": 25,
+        "minDam": 22,
+        "maxDam": 35,
+        "baseCost": 625
+    },
+    {
+        "name": "Kingslayer Blade",
+        "baseQuality": 35,
+        "minDam": 32,
+        "maxDam": 48,
+        "baseCost": 1225
+    },
+	{
+      "name": "Long Sword",  
+      "baseQuality": 10,
+      "minDam": 5,
+      "maxDam": 10,
+	  "baseCost": 80
+    },
+    {
+        "name": "Club",
+        "baseQuality": 2,
+        "minDam": 1,
+        "maxDam": 4,
+        "baseCost": 10
+    },
+    {
+      "name": "Mace",
+      "baseQuality": 10,
+      "minDam": 4,
+      "maxDam": 11,
+      "baseCost": 100
+    },
+	{
+		"name": "Spear",
+		"baseQuality": 15,
+		"minDam": 7,
+		"maxDam": 15,
+		"baseCost": 250
+	},
+    {
+        "name": "Short Bow",
+        "baseQuality": 8,
+        "minDam": 3,
+        "maxDam": 9,
+        "baseCost": 155
+    },
+    {
+        "name": "Siege Bow",
+        "baseQuality": 20,
+        "minDam": 15,
+        "maxDam": 22,
+        "baseCost": 325
+    },
+	{
+		"name": "Long Bow",
+		"baseQuality": 12,
+		"minDam": 6,
+		"maxDam": 13,
+		"baseCost": 225
+	}
+],
+	  
+"qualityLevels": [
+        {
+            "name": "Destroyed",
+            "qualityMod": 0.1,
+            "costMod": 0.1,
+            "damMod": 0.1
+        },
+		{
+			"name": "Broken",
+			"qualityMod": 0.25,
+			"costMod": 0.25,
+			"damMod": 0.25
+		},
+		{
+			"name": "Poorly Crafted",
+			"qualityMod": 0.5,
+			"costMod": 0.5,
+			"damMod": 0.5
+		},
+        {
+            "name": "Chipped",
+            "qualityMod": 0.75,
+            "costMod": 0.75,
+            "damMod": 0.75
+        },
+		{
+			"name": "",
+			"qualityMod": 1,
+			"costMod": 1,
+			"damMod": 1
+		},
+		{
+			"name": "Well-Crafted",
+			"qualityMod": 1.25,
+			"costMod": 1.25,
+			"damMod": 1.25
+		},
+        {
+            "name": "Expertly-Crafted",
+            "qualityMod": 1.75,
+            "costMod": 1.75,
+            "damMod": 1.75
+        },
+		{
+			"name": "Mastercrafted",
+			"qualityMod": 2,
+			"costMod": 3,
+			"damMod": 2.5
+		},
+        {
+            "name": "Legendarily-Crafted",
+            "qualityMod": 3.75,
+            "costMod": 5.5,
+            "damMod": 4.25
+        },
+        {
+            "name": "Ancient",
+            "qualityMod": 4.25,
+            "costMod": 7.25,
+            "damMod": 5.5
+        },
+		{
+			"name": "Divinely-Forged",
+			"qualityMod": 5,
+			"costMod": 10,
+			"damMod": 7.5
+		},
+        {
+            "name": "God-Touched",
+            "qualityMod": 9,
+            "costMod": 15,
+            "damMod": 12.5
+        }
+	],
+	  
+"elemMods": [
+		{
+			"name": " ",
+			"qualityMod": 1,
+			"costMod": 1,
+			"damMod": 1,
+			"damType": "Physical"
+		},
+        {
+            "name": "Flame-Touched",
+			"qualityMod": 10,
+			"costMod": 1.25,
+			"damMod": 1.05,
+			"damType": "Fire"
+        },
+		{
+			"name": "Fiery",
+			"qualityMod": 20,
+			"costMod": 2,
+			"damMod": 1.15,
+			"damType": "Fire"
+		},
+        {
+            "name": "Flame-Wreathed",
+			"qualityMod": 30,
+			"costMod": 2.25,
+			"damMod": 1.35,
+			"damType": "Fire"
+        },
+        {
+            "name": "Infernus",
+			"qualityMod": 45,
+			"costMod": 2.75,
+			"damMod": 1.55,
+			"damType": "Fire"
+        },
+        {
+            "name": "Agni",
+			"qualityMod": 70,
+			"costMod": 4,
+			"damMod": 2,
+			"damType": "Fire"
+        },
+        { 
+            "name": "Frosted",
+			"qualityMod": 10,
+			"costMod": 1.5,
+			"damMod": 1.15,
+			"damType": "Ice"
+        },
+		{
+			"name": "Icy",
+			"qualityMod": 20,
+			"costMod": 2.25,
+			"damMod": 1.35,
+			"damType": "Ice"
+		},
+        {
+            "name": "Frigid",
+			"qualityMod": 30,
+			"costMod": 2.5,
+			"damMod": 1.5,
+			"damType": "Ice"
+        },
+        {
+            "name": "Glacial",
+			"qualityMod": 45,
+			"costMod": 3.25,
+			"damMod": 1.65,
+			"damType": "Ice"
+        },
+        {
+            "name": "Cocytus",
+			"qualityMod": 65,
+			"costMod": 5,
+			"damMod": 2.15,
+			"damType": "Ice"
+        },
+		{
+			"name": "Charged",
+			"qualityMod": 20,
+			"costMod": 2,
+			"damMod": 1.15,
+			"damType": "Lightning"
+		},
+        {
+            "name": "Spiritual",
+			"qualityMod": 15,
+			"costMod": 1.65,
+			"damMod": 1.15,
+			"damType": "Holy"
+        },
+        {
+            "name": "Blessed",
+			"qualityMod": 30,
+			"costMod": 2.25,
+			"damMod": 1.35,
+			"damType": "Holy"
+        },
+		{
+			"name": "Hallowed",
+			"qualityMod": 40,
+			"costMod": 4.5,
+			"damMod": 1.55,
+			"damType": "Holy"
+		},
+        {
+            "name": "Pure",
+			"qualityMod": 60,
+			"costMod": 6,
+			"damMod": 2,
+			"damType": "Holy"
+        },
+        {
+            "name": "Beatified",
+			"qualityMod": 90,
+			"costMod": 7,
+			"damMod": 2.35,
+			"damType": "Holy"
+        }
+	],
+	  
+	"prefixes": [
+		{
+			"name": " ",
+			"statMod": "",
+			"modAmt": "",
+			"qualityMod": 0,
+			"costMod": 1
+		},
+		{
+			"name": "Bandit's",
+			"statMod": ["Dexterity", "Attack Speed"],
+			"lowerModAmt": [20, 0.15],
+            "upperModAmt": [40, 0.15],
+			"qualityMod": 30,
+			"costMod": 4
+		},
+        {
+            "name": "Gladiator's",
+			"statMod": ["Strength", "Damage"],
+			"lowerModAmt": [15, 10],
+            "upperModAmt": [35, 25],
+			"qualityMod": 50,
+			"costMod": 8
+        },
+		{
+			"name": "Giant's",
+			"statMod": ["Strength", "Hit Points"],
+			"lowerModAmt": [20, 100],
+            "upperModAmt": [45, 200],
+			"qualityMod": 40,
+			"costMod": 6
+		},
+		{
+			"name": "Wizard's",
+			"statMod": ["Intelligence", "Mana Points"],
+			"lowerModAmt": [20, 100],
+            "upperModAmt": [45, 200],
+			"qualityMod": 35,
+			"costMod": 5.5
+		}
+	],
+    "suffixes": [
+		{
+			"name": " ",
+			"statMod": "",
+			"lowerModAmt": "",
+            "upperModAmt": "",
+			"qualityMod": 0,
+			"costMod": 1
+		},
+		{
+			"name": " of Confusion",
+			"statMod": ["Chance to Confuse on Hit"],
+            "lowerModAmt": [0.05],
+			"upperModAmt": [0.05],
+			"qualityMod": 3,
+			"costMod": 4
+		},
+		{
+			"name": " of Divine Wrath",
+			"statMod": [ "Strength", "Dexterity", "Damage", "Health Regeneration" ],
+			"lowerModAmt": [50, 50, 10, 0.15],
+            "upperModAmt": [100, 100, 25, 0.15],
+			"qualityMod": 20,
+			"costMod": 55
+		},
+		{
+			"name": " of Warlocks",
+			"statMod": ["Mana Regeneration"],
+			"lowerModAmt": [0.15],
+            "upperModAmt": [0.15],
+			"qualityMod": 4,
+			"costMod": 6.5
+		},
+		{
+			"name": " of Wounding",
+			"statMod": ["Damage"],
+			"lowerModAmt": [3],
+            "upperModAmt": [7],
+			"qualityMod": 2.25,
+			"costMod": 2
+		},
+        {
+            "name": " of Open Wounds",
+			"statMod": ["Damage", "Chance to Bleed"],
+			"lowerModAmt": [3, 0.10],
+            "upperModAmt": [6, 0.10],
+			"qualityMod": 2.5,
+			"costMod": 2.25
+        },
+        {
+            "name": " of Serious Wounds",
+			"statMod": ["Damage"],
+            "lowerModAmt": [8],
+			"upperModAmt": [15],
+			"qualityMod": 4.25,
+			"costMod": 3.75
+        },
+        {
+            "name": " of Laceration",
+			"statMod": ["Damage", "Chance to Bleed"],
+			"lowerModAmt": [4, 0.25],
+            "upperModAmt": [9, 0.25],
+			"qualityMod": 6.5,
+			"costMod": 5.35
+        },
+        {
+            "name": " of Grevious Wounds",
+			"statMod": ["Damage"],
+			"lowerModAmt": [12],
+            "upperModAmt": [18],
+			"qualityMod": 5.25,
+			"costMod": 5
+        }
+	],  
+    "weapMat": [
+      {
+        "name": "Brass",
+		"qualityMod": -2,
+		"minDamMod": -1,
+		"maxDamMod": -3,
+		"costMod": 0.75
+      },
+	  {
+		"name": "Copper",
+		"qualityMod": 5,
+		"minDamMod": 3,
+		"maxDamMod": 5,
+		"costMod": 1.15
+	  },
+	  {
+       "name": "Iron", 
+       "qualityMod": 10, 
+       "minDamMod": 5,
+       "maxDamMod": 10,
+	   "costMod": 1.35
+      }, 
+      {
+       "name": "Steel", 
+       "qualityMod": 20,
+       "minDamMod": 10,
+       "maxDamMod": 15,
+	   "costMod": 1.75
+      },
+	  {
+		"name": "Mithril",
+		"qualityMod": 30,
+		"minDamMod": 20,
+		"maxDamMod": 30,
+		"costMod": 2.1
+	  },
+	  {
+		"name": "Admantite",
+	    "qualityMod": 40,
+	    "minDamMod": 30,
+		"maxDamMod": 45,
+		"costMod": 2.5
+	  },
+	  {
+		"name": "Meteorite",
+		"qualityMod": 50,
+		"minDamMod": 50,
+		"maxDamMod": 70,
+		"costMod": 3.25
+	  },
+	  {
+		"name": "Crystal",
+		"qualityMod": 70,
+		"minDamMod": 70,
+		"maxDamMod": 90,
+		"costMod": 4.25
+	  },
+	  {
+		"name": "Dragonbone",
+		"qualityMod": 90,
+		"minDamMod": 100,
+		"maxDamMod": 130,
+		"costMod": 5.5
+	  },
+	  {
+		  "name": "Zerolite",
+		  "qualityMod": 115,
+		  "minDamMod": 120,
+		  "maxDamMod": 160,
+		  "costMod": 7
+	  },	  
+	  {
+		  "name": "Xenolithite",
+		  "qualityMod": 150,
+		  "minDamMod": 200,
+		  "maxDamMod": 275,
+		  "costMod": 10
+	  }
+	]  
+  }
