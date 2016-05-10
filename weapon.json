@@ -1,170 +1,409 @@
 {
-	"weapTypes": [
-    {
-        "name": "Dagger",
-        "baseQuality": 5,
-        "minDam": 2,
-        "maxDam": 5,
-        "baseCost": 25
-    },
-    {
-        "name": "Short Sword",
-        "baseQuality": 8,
-        "minDam": 5,
-        "maxDam": 9,
-        "baseCost": 25
-    },
-    {
-        "name": "Bec de Corbin",
-        "baseQuality": 18,
-        "minDam": 12,
-        "maxDam": 21,
-        "baseCost": 300
-    },
-    {
-        "name": "Poniard",
-        "baseQuality": 21,
-        "minDam": 14,
-        "maxDam": 28,
-        "baseCost": 325
-    },
-    {
-        "name": "Flamberge",
-        "baseQuality": 25,
-        "minDam": 22,
-        "maxDam": 35,
-        "baseCost": 625
-    },
-    {
-        "name": "Kingslayer Blade",
-        "baseQuality": 35,
-        "minDam": 32,
-        "maxDam": 48,
-        "baseCost": 1225
-    },
-	{
-      "name": "Long Sword",  
-      "baseQuality": 10,
-      "minDam": 5,
-      "maxDam": 10,
-	  "baseCost": 80
-    },
-    {
-        "name": "Club",
-        "baseQuality": 2,
-        "minDam": 1,
-        "maxDam": 4,
-        "baseCost": 10
-    },
-    {
-      "name": "Mace",
-      "baseQuality": 10,
-      "minDam": 4,
-      "maxDam": 11,
-      "baseCost": 100
-    },
-	{
-		"name": "Spear",
-		"baseQuality": 15,
-		"minDam": 7,
-		"maxDam": 15,
-		"baseCost": 250
-	},
-    {
-        "name": "Short Bow",
-        "baseQuality": 8,
-        "minDam": 3,
-        "maxDam": 9,
-        "baseCost": 155
-    },
-    {
-        "name": "Siege Bow",
-        "baseQuality": 20,
-        "minDam": 15,
-        "maxDam": 22,
-        "baseCost": 325
-    },
-	{
-		"name": "Long Bow",
-		"baseQuality": 12,
-		"minDam": 6,
-		"maxDam": 13,
-		"baseCost": 225
-	}
-],
+    "itemTypes": {
+        "weapon": [
+        {
+            "name": "Dagger",
+            "baseQuality": 5,
+            "minDam": 2,
+            "maxDam": 5,
+            "baseCost": 25,
+            "materialType": "metal",
+            "slot": "Either hand",
+            "tier": 1
+        },
+        {
+            "name": "Main Gauche",
+            "baseQuality": 12,
+            "minDam": 8,
+            "maxDam": 12,
+            "baseCost": 50,
+            "materialType": "metal",
+            "slot": "Off hand",
+            "tier": 3
+        },
+        {
+            "name": "Swordbreaker",
+            "baseQuality": 18,
+            "minDam": 7,
+            "maxDam": 14,
+            "baseCost": 100,
+            "materialType": "metal",
+            "slot": "Off hand",
+            "tier": 6
+        },
+        {
+            "name": "Short Sword",
+            "baseQuality": 8,
+            "minDam": 5,
+            "maxDam": 9,
+            "baseCost": 25,
+            "materialType": "metal",
+            "slot": "Either hand",
+            "tier": 2
+        },
+        {
+            "name": "Bec de Corbin",
+            "baseQuality": 18,
+            "minDam": 12,
+            "maxDam": 21,
+            "baseCost": 300,
+            "materialType": "metal",
+            "slot": "Main hand",
+            "tier": 5
+        },
+        {
+            "name": "Poniard",
+            "baseQuality": 21,
+            "minDam": 14,
+            "maxDam": 28,
+            "baseCost": 325,
+            "materialType": "metal",
+            "slot": "Either hand",
+            "tier": 9
+        },
+        {
+            "name": "Flamberge",
+            "baseQuality": 25,
+            "minDam": 22,
+            "maxDam": 35,
+            "baseCost": 625,
+            "materialType": "metal",
+            "slot": "Both hands",
+            "tier": 8
+        },
+        {
+            "name": "Kingslayer Blade",
+            "baseQuality": 35,
+            "minDam": 32,
+            "maxDam": 48,
+            "baseCost": 1225,
+            "materialType": "metal",
+            "slot": "Both hands",
+            "tier": 11
+        },
+        {
+          "name": "Long Sword",  
+          "baseQuality": 10,
+          "minDam": 5,
+          "maxDam": 10,
+          "baseCost": 80,
+          "materialType": "metal",
+          "slot": "Main hand",
+          "tier": 3
+        },
+        {
+            "name": "Club",
+            "baseQuality": 2,
+            "minDam": 1,
+            "maxDam": 4,
+            "baseCost": 10,
+            "materialType": "wood",
+            "slot": "Main hand",
+            "tier": 1
+        },
+        {
+          "name": "Mace",
+          "baseQuality": 10,
+          "minDam": 4,
+          "maxDam": 11,
+          "baseCost": 100,
+          "materialType": "metal",
+          "slot": "Main hand",
+          "tier": 4
+        },
+        {
+            "name": "Spear",
+            "baseQuality": 15,
+            "minDam": 7,
+            "maxDam": 15,
+            "baseCost": 250,
+            "materialType": "metal",
+            "slot": "Main hand",
+            "tier": 4
+        },
+        {
+            "name": "Short Bow",
+            "baseQuality": 8,
+            "minDam": 3,
+            "maxDam": 9,
+            "baseCost": 155,
+            "materialType": "wood",
+            "slot": "Both hands",
+            "tier": 2
+        },
+        {
+            "name": "Siege Bow",
+            "baseQuality": 20,
+            "minDam": 15,
+            "maxDam": 22,
+            "baseCost": 325,
+            "materialType": "wood",
+            "slot": "Both hands",
+            "tier": 7
+        },
+        {
+            "name": "Long Bow",
+            "baseQuality": 12,
+            "minDam": 6,
+            "maxDam": 13,
+            "baseCost": 225,
+            "materialType": "wood",
+            "slot": "Both hands",
+            "tier": 4
+        }
+    ],
+    "armor": [
+        {
+            "name": "Jerkin",
+            "baseQuality": 12,
+            "minArmor": 6,
+            "maxArmor": 13,
+            "baseCost": 225,
+            "materialType": "leather",
+            "slot": "Torso",
+            "tier": 1
+        },
+        {
+            "name": "Doublet",
+            "baseQuality": 12,
+            "minArmor": 12,
+            "maxArmor": 20,
+            "baseCost": 225,
+            "materialType": "leather",
+            "slot": "Torso",
+            "tier": 3
+        },
+        {
+            "name": "Studded Armor",
+            "baseQuality": 12,
+            "minArmor": 25,
+            "maxArmor": 35,
+            "baseCost": 225,
+            "materialType": "leather",
+            "slot": "Torso",
+            "tier": 5
+        },
+        {
+            "name": "Shadowmeld Armor",
+            "baseQuality": 12,
+            "minArmor": 60,
+            "maxArmor": 91,
+            "baseCost": 225,
+            "materialType": "leather",
+            "slot": "Torso",
+            "tier": 8
+        },
+        {
+            "name": "Chain Mail",
+            "baseQuality": 12,
+            "minArmor": 20,
+            "maxArmor": 35,
+            "baseCost": 225,
+            "materialType": "metal",
+            "slot": "Torso",
+            "tier": 3
+        },
+        {
+            "name": "Scale Mail",
+            "baseQuality": 12,
+            "minArmor": 30,
+            "maxArmor": 45,
+            "baseCost": 225,
+            "materialType": "metal",
+            "slot": "Torso",
+            "tier": 6
+        },
+        {
+            "name": "Bar Armor",
+            "baseQuality": 12,
+            "minArmor": 50,
+            "maxArmor": 81,
+            "baseCost": 225,
+            "materialType": "metal",
+            "slot": "Torso",
+            "tier": 7
+        },
+        {
+            "name": "Plate Armor",
+            "baseQuality": 12,
+            "minArmor": 80,
+            "maxArmor": 121,
+            "baseCost": 225,
+            "materialType": "metal",
+            "slot": "Torso",
+            "tier": 9
+        },
+        {
+            "name": "Simple Robe",
+            "baseQuality": 12,
+            "minArmor": 3,
+            "maxArmor": 6,
+            "baseCost": 225,
+            "materialType": "cloth",
+            "slot": "Torso",
+            "tier": 1
+        },
+        {
+            "name": "Acolyte Robe",
+            "baseQuality": 12,
+            "minArmor": 12,
+            "maxArmor": 15,
+            "baseCost": 225,
+            "materialType": "cloth",
+            "slot": "Torso",
+            "tier": 3
+        },
+        {
+            "name": "Priest Robe",
+            "baseQuality": 12,
+            "minArmor": 20,
+            "maxArmor": 31,
+            "baseCost": 225,
+            "materialType": "cloth",
+            "slot": "Torso",
+            "tier": 6
+        },
+        {
+            "name": "Archmage Robe",
+            "baseQuality": 12,
+            "minArmor": 40,
+            "maxArmor": 51,
+            "baseCost": 225,
+            "materialType": "cloth",
+            "slot": "Torso",
+            "tier": 8
+        }
+    ]
+},
 	  
 "qualityLevels": [
         {
             "name": "Destroyed",
             "qualityMod": 0.1,
             "costMod": 0.1,
-            "damMod": 0.1
+            "damMod": 0.1,
+            "tier": 0,
+            "applicableMaterial": {"wood": "wood", "metal": "metal", "leather": "leather"},
+            "applicableGearTypes": {"weapon": "weapon", "armor": "armor" }
+            
+        },
+        {
+            "name": "Rotted",
+            "qualityMod": 0.125,
+            "costMod": 0.125,
+            "damMod": 0.125,
+            "tier": 0,
+            "applicableMaterial": {"wood": "wood"},
+            "applicableGearTypes": {"weapon": "weapon", "armor": "armor" }  
+        },
+        {
+            "name": "Shredded",
+            "qualityMod": 0.15,
+            "costMod": 0.15,
+            "damMod": 0.15,
+            "tier": 0,
+            "applicableMaterial": {"cloth": "cloth"},
+            "applicableGearTypes": {"armor": "armor" }
+            
         },
 		{
 			"name": "Broken",
 			"qualityMod": 0.25,
 			"costMod": 0.25,
-			"damMod": 0.25
+			"damMod": 0.25,
+            "tier": 0,
+            "applicableMaterial": {"wood": "wood", "metal": "metal"},
+            "applicableGearTypes": {"weapon": "weapon", "armor": "armor" }
 		},
 		{
 			"name": "Poorly Crafted",
 			"qualityMod": 0.5,
 			"costMod": 0.5,
-			"damMod": 0.5
+			"damMod": 0.5,
+            "tier": 0,
+            "applicableMaterial": {"wood": "wood", "metal": "metal", "leather": "leather", "cloth": "cloth"},
+            "applicableGearTypes": {"weapon": "weapon", "armor": "armor" }
 		},
         {
             "name": "Chipped",
             "qualityMod": 0.75,
             "costMod": 0.75,
-            "damMod": 0.75
+            "damMod": 0.75,
+            "tier": 0,
+            "applicableMaterial": {"wood": "wood", "metal": "metal"},
+            "applicableGearTypes": {"weapon": "weapon", "armor": "armor" }
         },
 		{
 			"name": "",
 			"qualityMod": 1,
 			"costMod": 1,
-			"damMod": 1
+			"damMod": 1,
+            "tier": 0,
+            "applicableMaterial": {"wood": "wood", "metal": "metal", "leather": "leather", "cloth": "cloth"},
+            "applicableGearTypes": {"weapon": "weapon", "armor": "armor" }
 		},
 		{
 			"name": "Well-Crafted",
 			"qualityMod": 1.25,
 			"costMod": 1.25,
-			"damMod": 1.25
+			"damMod": 1.25,
+            "tier": 0,
+            "applicableMaterial": {"wood": "wood", "metal": "metal", "leather": "leather", "cloth": "cloth"},
+            "applicableGearTypes": {"weapon": "weapon", "armor": "armor" }
 		},
         {
             "name": "Expertly-Crafted",
             "qualityMod": 1.75,
             "costMod": 1.75,
-            "damMod": 1.75
+            "damMod": 1.75,
+            "tier": 3,
+            "applicableMaterial": {"wood": "wood", "metal": "metal", "leather": "leather", "cloth": "cloth"},
+            "applicableGearTypes": {"weapon": "weapon", "armor": "armor" }
         },
 		{
 			"name": "Mastercrafted",
 			"qualityMod": 2,
 			"costMod": 3,
-			"damMod": 2.5
+			"damMod": 2.5,
+            "tier": 4,
+            "applicableMaterial": {"wood": "wood", "metal": "metal", "leather": "leather", "cloth": "cloth"},
+            "applicableGearTypes": {"weapon": "weapon", "armor": "armor" }
 		},
         {
             "name": "Legendarily-Crafted",
             "qualityMod": 3.75,
             "costMod": 5.5,
-            "damMod": 4.25
+            "damMod": 4.25,
+            "tier": 6,
+            "applicableMaterial": {"wood": "wood", "metal": "metal", "leather": "leather", "cloth": "cloth"},
+            "applicableGearTypes": {"weapon": "weapon", "armor": "armor" }
         },
         {
             "name": "Ancient",
             "qualityMod": 4.25,
             "costMod": 7.25,
-            "damMod": 5.5
+            "damMod": 5.5,
+            "tier": 6,
+            "applicableMaterial": {"wood": "wood", "metal": "metal", "leather": "leather", "cloth": "cloth"},
+            "applicableGearTypes": {"weapon": "weapon", "armor": "armor" }
         },
 		{
 			"name": "Divinely-Forged",
 			"qualityMod": 5,
 			"costMod": 10,
-			"damMod": 7.5
+			"damMod": 7.5,
+            "tier": 8,
+            "applicableMaterial": {"wood": "wood", "metal": "metal", "leather": "leather", "cloth": "cloth"},
+            "applicableGearTypes": {"weapon": "weapon", "armor": "armor" }
 		},
         {
             "name": "God-Touched",
             "qualityMod": 9,
             "costMod": 15,
-            "damMod": 12.5
+            "damMod": 12.5,
+            "tier": 9,
+            "applicableMaterial": {"wood": "wood", "metal": "metal", "leather": "leather", "cloth": "cloth"},
+            "applicableGearTypes": {"weapon": "weapon", "armor": "armor" }
         }
 	],
 	  
@@ -174,119 +413,136 @@
 			"qualityMod": 1,
 			"costMod": 1,
 			"damMod": 1,
-			"damType": "Physical"
+			"damType": "Physical",
+            "tier": 0
 		},
         {
             "name": "Flame-Touched",
 			"qualityMod": 10,
 			"costMod": 1.25,
 			"damMod": 1.05,
-			"damType": "Fire"
+			"damType": "Fire",
+            "tier": 1
         },
 		{
 			"name": "Fiery",
 			"qualityMod": 20,
 			"costMod": 2,
 			"damMod": 1.15,
-			"damType": "Fire"
+			"damType": "Fire",
+            "tier": 3
 		},
         {
             "name": "Flame-Wreathed",
 			"qualityMod": 30,
 			"costMod": 2.25,
 			"damMod": 1.35,
-			"damType": "Fire"
+			"damType": "Fire",
+            "tier": 5
         },
         {
             "name": "Infernus",
 			"qualityMod": 45,
 			"costMod": 2.75,
 			"damMod": 1.55,
-			"damType": "Fire"
+			"damType": "Fire",
+            "tier": 7
         },
         {
             "name": "Agni",
 			"qualityMod": 70,
 			"costMod": 4,
 			"damMod": 2,
-			"damType": "Fire"
+			"damType": "Fire",
+            "tier": 9
         },
         { 
             "name": "Frosted",
 			"qualityMod": 10,
 			"costMod": 1.5,
 			"damMod": 1.15,
-			"damType": "Ice"
+			"damType": "Ice",
+            "tier": 1
         },
 		{
 			"name": "Icy",
 			"qualityMod": 20,
 			"costMod": 2.25,
 			"damMod": 1.35,
-			"damType": "Ice"
+			"damType": "Ice",
+            "tier": 3
 		},
         {
             "name": "Frigid",
 			"qualityMod": 30,
 			"costMod": 2.5,
 			"damMod": 1.5,
-			"damType": "Ice"
+			"damType": "Ice",
+            "tier": 5
         },
         {
             "name": "Glacial",
 			"qualityMod": 45,
 			"costMod": 3.25,
 			"damMod": 1.65,
-			"damType": "Ice"
+			"damType": "Ice",
+            "tier": 7
         },
         {
             "name": "Cocytus",
 			"qualityMod": 65,
 			"costMod": 5,
 			"damMod": 2.15,
-			"damType": "Ice"
+			"damType": "Ice",
+            "tier": 9
         },
 		{
 			"name": "Charged",
 			"qualityMod": 20,
 			"costMod": 2,
 			"damMod": 1.15,
-			"damType": "Lightning"
+			"damType": "Lightning",
+            "tier": 3
 		},
         {
             "name": "Spiritual",
 			"qualityMod": 15,
 			"costMod": 1.65,
 			"damMod": 1.15,
-			"damType": "Holy"
+			"damType": "Holy",
+            "tier": 1
         },
         {
             "name": "Blessed",
 			"qualityMod": 30,
 			"costMod": 2.25,
 			"damMod": 1.35,
-			"damType": "Holy"
+			"damType": "Holy",
+            "tier": 3
         },
 		{
 			"name": "Hallowed",
 			"qualityMod": 40,
 			"costMod": 4.5,
 			"damMod": 1.55,
-			"damType": "Holy"
+			"damType": "Holy",
+            "tier": 5
 		},
         {
             "name": "Pure",
 			"qualityMod": 60,
 			"costMod": 6,
 			"damMod": 2,
-			"damType": "Holy"
+			"damType": "Holy",
+            "tier": 7
         },
         {
             "name": "Beatified",
 			"qualityMod": 90,
 			"costMod": 7,
 			"damMod": 2.35,
-			"damType": "Holy"
+			"damType": "Holy",
+            "tier": 9
         }
 	],
 	  
@@ -296,7 +552,8 @@
 			"statMod": "",
 			"modAmt": "",
 			"qualityMod": 0,
-			"costMod": 1
+			"costMod": 1,
+            "tier": 0
 		},
 		{
 			"name": "Bandit's",
@@ -304,7 +561,8 @@
 			"lowerModAmt": [20, 0.15],
             "upperModAmt": [40, 0.15],
 			"qualityMod": 30,
-			"costMod": 4
+			"costMod": 4,
+            "tier": 3
 		},
         {
             "name": "Gladiator's",
@@ -312,7 +570,8 @@
 			"lowerModAmt": [15, 10],
             "upperModAmt": [35, 25],
 			"qualityMod": 50,
-			"costMod": 8
+			"costMod": 8,
+            "tier": 6
         },
 		{
 			"name": "Giant's",
@@ -320,7 +579,8 @@
 			"lowerModAmt": [20, 100],
             "upperModAmt": [45, 200],
 			"qualityMod": 40,
-			"costMod": 6
+			"costMod": 6,
+            "tier": 4
 		},
 		{
 			"name": "Wizard's",
@@ -328,7 +588,8 @@
 			"lowerModAmt": [20, 100],
             "upperModAmt": [45, 200],
 			"qualityMod": 35,
-			"costMod": 5.5
+			"costMod": 5.5,
+            "tier": 5
 		}
 	],
     "suffixes": [
@@ -338,7 +599,8 @@
 			"lowerModAmt": "",
             "upperModAmt": "",
 			"qualityMod": 0,
-			"costMod": 1
+			"costMod": 1,
+            "tier": 0
 		},
 		{
 			"name": " of Confusion",
@@ -346,7 +608,8 @@
             "lowerModAmt": [0.05],
 			"upperModAmt": [0.05],
 			"qualityMod": 3,
-			"costMod": 4
+			"costMod": 4,
+            "tier": 2
 		},
 		{
 			"name": " of Divine Wrath",
@@ -354,7 +617,8 @@
 			"lowerModAmt": [50, 50, 10, 0.15],
             "upperModAmt": [100, 100, 25, 0.15],
 			"qualityMod": 20,
-			"costMod": 55
+			"costMod": 55,
+            "tier": 8
 		},
 		{
 			"name": " of Warlocks",
@@ -362,7 +626,8 @@
 			"lowerModAmt": [0.15],
             "upperModAmt": [0.15],
 			"qualityMod": 4,
-			"costMod": 6.5
+			"costMod": 6.5,
+            "tier": 4
 		},
 		{
 			"name": " of Wounding",
@@ -370,7 +635,8 @@
 			"lowerModAmt": [3],
             "upperModAmt": [7],
 			"qualityMod": 2.25,
-			"costMod": 2
+			"costMod": 2,
+            "tier": 2
 		},
         {
             "name": " of Open Wounds",
@@ -378,7 +644,8 @@
 			"lowerModAmt": [3, 0.10],
             "upperModAmt": [6, 0.10],
 			"qualityMod": 2.5,
-			"costMod": 2.25
+			"costMod": 2.25,
+            "tier": 5
         },
         {
             "name": " of Serious Wounds",
@@ -386,7 +653,8 @@
             "lowerModAmt": [8],
 			"upperModAmt": [15],
 			"qualityMod": 4.25,
-			"costMod": 3.75
+			"costMod": 3.75,
+            "tier": 6
         },
         {
             "name": " of Laceration",
@@ -394,7 +662,8 @@
 			"lowerModAmt": [4, 0.25],
             "upperModAmt": [9, 0.25],
 			"qualityMod": 6.5,
-			"costMod": 5.35
+			"costMod": 5.35,
+            "tier": 7
         },
         {
             "name": " of Grevious Wounds",
@@ -402,86 +671,326 @@
 			"lowerModAmt": [12],
             "upperModAmt": [18],
 			"qualityMod": 5.25,
-			"costMod": 5
+			"costMod": 5,
+            "tier": 8
         }
 	],  
-    "weapMat": [
-      {
-        "name": "Brass",
-		"qualityMod": -2,
-		"minDamMod": -1,
-		"maxDamMod": -3,
-		"costMod": 0.75
-      },
-	  {
-		"name": "Copper",
-		"qualityMod": 5,
-		"minDamMod": 3,
-		"maxDamMod": 5,
-		"costMod": 1.15
-	  },
-	  {
-       "name": "Iron", 
-       "qualityMod": 10, 
-       "minDamMod": 5,
-       "maxDamMod": 10,
-	   "costMod": 1.35
-      }, 
-      {
-       "name": "Steel", 
-       "qualityMod": 20,
-       "minDamMod": 10,
-       "maxDamMod": 15,
-	   "costMod": 1.75
-      },
-	  {
-		"name": "Mithril",
-		"qualityMod": 30,
-		"minDamMod": 20,
-		"maxDamMod": 30,
-		"costMod": 2.1
-	  },
-	  {
-		"name": "Admantite",
-	    "qualityMod": 40,
-	    "minDamMod": 30,
-		"maxDamMod": 45,
-		"costMod": 2.5
-	  },
-	  {
-		"name": "Meteorite",
-		"qualityMod": 50,
-		"minDamMod": 50,
-		"maxDamMod": 70,
-		"costMod": 3.25
-	  },
-	  {
-		"name": "Crystal",
-		"qualityMod": 70,
-		"minDamMod": 70,
-		"maxDamMod": 90,
-		"costMod": 4.25
-	  },
-	  {
-		"name": "Dragonbone",
-		"qualityMod": 90,
-		"minDamMod": 100,
-		"maxDamMod": 130,
-		"costMod": 5.5
-	  },
-	  {
-		  "name": "Zerolite",
-		  "qualityMod": 115,
-		  "minDamMod": 120,
-		  "maxDamMod": 160,
-		  "costMod": 7
-	  },	  
-	  {
-		  "name": "Xenolithite",
-		  "qualityMod": 150,
-		  "minDamMod": 200,
-		  "maxDamMod": 275,
-		  "costMod": 10
-	  }
-	]  
+    "itemMaterials": { 
+        "cloth": [
+            {
+            "name": "Burlap",
+            "qualityMod": -2,
+            "minDamMod": -1,
+            "maxDamMod": -3,
+            "costMod": 0.75
+          },
+          {
+            "name": "Rough Cotton",
+            "qualityMod": 5,
+            "minDamMod": 3,
+            "maxDamMod": 5,
+            "costMod": 1.15
+          },
+          {
+           "name": "Cotton", 
+           "qualityMod": 10, 
+           "minDamMod": 5,
+           "maxDamMod": 10,
+           "costMod": 1.35
+          }, 
+          {
+           "name": "Satin", 
+           "qualityMod": 20,
+           "minDamMod": 10,
+           "maxDamMod": 15,
+           "costMod": 1.75
+          },
+          {
+            "name": "Silk",
+            "qualityMod": 30,
+            "minDamMod": 20,
+            "maxDamMod": 30,
+            "costMod": 2.1
+          },
+          {
+            "name": "Enchanted Silk",
+            "qualityMod": 40,
+            "minDamMod": 30,
+            "maxDamMod": 45,
+            "costMod": 2.5
+          },
+          {
+            "name": "Mageweave",
+            "qualityMod": 50,
+            "minDamMod": 50,
+            "maxDamMod": 70,
+            "costMod": 3.25
+          },
+          {
+            "name": "Steelweave",
+            "qualityMod": 70,
+            "minDamMod": 70,
+            "maxDamMod": 90,
+            "costMod": 4.25
+          },
+          {
+            "name": "Hexweave",
+            "qualityMod": 90,
+            "minDamMod": 100,
+            "maxDamMod": 130,
+            "costMod": 5.5
+          },
+          {
+              "name": "Netherweave",
+              "qualityMod": 115,
+              "minDamMod": 120,
+              "maxDamMod": 160,
+              "costMod": 7
+          },	  
+          {
+              "name": "Angelic Weave",
+              "qualityMod": 150,
+              "minDamMod": 200,
+              "maxDamMod": 275,
+              "costMod": 10
+          }
+        ],
+        "wood": [
+            {
+            "name": "Balsa",
+            "qualityMod": -2,
+            "minDamMod": -1,
+            "maxDamMod": -3,
+            "costMod": 0.75
+          },
+          {
+            "name": "Pine",
+            "qualityMod": 5,
+            "minDamMod": 3,
+            "maxDamMod": 5,
+            "costMod": 1.15
+          },
+          {
+           "name": "Elm", 
+           "qualityMod": 10, 
+           "minDamMod": 5,
+           "maxDamMod": 10,
+           "costMod": 1.35
+          }, 
+          {
+           "name": "Ash", 
+           "qualityMod": 20,
+           "minDamMod": 10,
+           "maxDamMod": 15,
+           "costMod": 1.75
+          },
+          {
+            "name": "Oak",
+            "qualityMod": 30,
+            "minDamMod": 20,
+            "maxDamMod": 30,
+            "costMod": 2.1
+          },
+          {
+            "name": "Yew",
+            "qualityMod": 40,
+            "minDamMod": 30,
+            "maxDamMod": 45,
+            "costMod": 2.5
+          },
+          {
+            "name": "Hickory",
+            "qualityMod": 50,
+            "minDamMod": 50,
+            "maxDamMod": 70,
+            "costMod": 3.25
+          },
+          {
+            "name": "Enchanted Wood",
+            "qualityMod": 70,
+            "minDamMod": 70,
+            "maxDamMod": 90,
+            "costMod": 4.25
+          },
+          {
+            "name": "Heartwood",
+            "qualityMod": 90,
+            "minDamMod": 100,
+            "maxDamMod": 130,
+            "costMod": 5.5
+          },
+          {
+              "name": "Netherwood",
+              "qualityMod": 115,
+              "minDamMod": 120,
+              "maxDamMod": 160,
+              "costMod": 7
+          },	  
+          {
+              "name": "Yggdrasil Wood",
+              "qualityMod": 150,
+              "minDamMod": 200,
+              "maxDamMod": 275,
+              "costMod": 10
+          }
+        ],
+        "metal": [
+          {
+            "name": "Brass",
+            "qualityMod": -2,
+            "minDamMod": -1,
+            "maxDamMod": -3,
+            "costMod": 0.75
+          },
+          {
+            "name": "Copper",
+            "qualityMod": 5,
+            "minDamMod": 3,
+            "maxDamMod": 5,
+            "costMod": 1.15
+          },
+          {
+           "name": "Iron", 
+           "qualityMod": 10, 
+           "minDamMod": 5,
+           "maxDamMod": 10,
+           "costMod": 1.35
+          }, 
+          {
+           "name": "Steel", 
+           "qualityMod": 20,
+           "minDamMod": 10,
+           "maxDamMod": 15,
+           "costMod": 1.75
+          },
+          {
+            "name": "Mithril",
+            "qualityMod": 30,
+            "minDamMod": 20,
+            "maxDamMod": 30,
+            "costMod": 2.1
+          },
+          {
+            "name": "Admantite",
+            "qualityMod": 40,
+            "minDamMod": 30,
+            "maxDamMod": 45,
+            "costMod": 2.5
+          },
+          {
+            "name": "Meteorite",
+            "qualityMod": 50,
+            "minDamMod": 50,
+            "maxDamMod": 70,
+            "costMod": 3.25
+          },
+          {
+            "name": "Crystal",
+            "qualityMod": 70,
+            "minDamMod": 70,
+            "maxDamMod": 90,
+            "costMod": 4.25
+          },
+          {
+            "name": "Dragonbone",
+            "qualityMod": 90,
+            "minDamMod": 100,
+            "maxDamMod": 130,
+            "costMod": 5.5
+          },
+          {
+              "name": "Zerolite",
+              "qualityMod": 115,
+              "minDamMod": 120,
+              "maxDamMod": 160,
+              "costMod": 7
+          },	  
+          {
+              "name": "Xenolithite",
+              "qualityMod": 150,
+              "minDamMod": 200,
+              "maxDamMod": 275,
+              "costMod": 10
+          }
+        ],
+        "leather": [
+          {
+            "name": "Rough Hide",
+            "qualityMod": -2,
+            "minDamMod": -1,
+            "maxDamMod": -3,
+            "costMod": 0.75
+          },
+          {
+            "name": "Rough Leather",
+            "qualityMod": 5,
+            "minDamMod": 3,
+            "maxDamMod": 5,
+            "costMod": 1.15
+          },
+          {
+           "name": "Hide", 
+           "qualityMod": 10, 
+           "minDamMod": 5,
+           "maxDamMod": 10,
+           "costMod": 1.35
+          }, 
+          {
+           "name": "Soft Leather", 
+           "qualityMod": 20,
+           "minDamMod": 10,
+           "maxDamMod": 15,
+           "costMod": 1.75
+          },
+          {
+            "name": "Hard Leather",
+            "qualityMod": 30,
+            "minDamMod": 20,
+            "maxDamMod": 30,
+            "costMod": 2.1
+          },
+          {
+            "name": "Top-Grain Leather",
+            "qualityMod": 40,
+            "minDamMod": 30,
+            "maxDamMod": 45,
+            "costMod": 2.5
+          },
+          {
+            "name": "Molerat Hide",
+            "qualityMod": 50,
+            "minDamMod": 50,
+            "maxDamMod": 70,
+            "costMod": 3.25
+          },
+          {
+            "name": "Snapper Hide",
+            "qualityMod": 70,
+            "minDamMod": 70,
+            "maxDamMod": 90,
+            "costMod": 4.25
+          },
+          {
+            "name": "Kilrathi Hide",
+            "qualityMod": 90,
+            "minDamMod": 100,
+            "maxDamMod": 130,
+            "costMod": 5.5
+          },
+          {
+              "name": "Shadowbeast Hide",
+              "qualityMod": 115,
+              "minDamMod": 120,
+              "maxDamMod": 160,
+              "costMod": 7
+          },	  
+          {
+              "name": "Dragonhide",
+              "qualityMod": 150,
+              "minDamMod": 200,
+              "maxDamMod": 275,
+              "costMod": 10
+          }
+        ]
+    }
   }
