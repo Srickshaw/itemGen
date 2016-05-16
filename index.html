@@ -8,6 +8,20 @@
 				padding: 0;
 				font-family: 'Roboto Condensed';
 			}
+			
+			.itemGenButton {
+				background: #33aa33 none repeat scroll 0 0;
+				border-radius: 8px;
+				box-shadow: 0 6px 0 #267426;
+				color: white;
+				cursor: pointer;
+				margin: 15px auto 0;
+				-moz-user-select: none;
+				padding: 10px 30px;
+				text-align: center;
+				-webkit-user-select: none;
+				width: 100px;				
+			}
 			.weaponContainer { 
                 border: 2px solid #ccc;
 				width: 500px;
@@ -16,11 +30,17 @@
                 display: inline-block;
                 vertical-align: top;
 			}
-			.weaponContainer p {
+			.weaponContainer p:not(:first-child), .stat-container {
+				padding: 10px 0 10px 10px;
 				margin: 0;
 			}
 			
-			.weaponContainer > p {
+			.weaponContainer > p:first-child, .stat-container > p:first-child {
+				border-top: 0;
+				margin: 0;
+			}
+			
+			.weaponContainer > p, .weaponContainer > div {
 				border-top: 1px solid #ccc;
 			}
 			
@@ -29,16 +49,19 @@
 				padding: 10px;
 				color: white;
 			}
-            .weaponContainer > p p.wMod { margin-left: 25px; }
+            .stat-container > p.wMod { 				
+				padding: 0;
+			}
             .wrapper {
                 width: 1170px;
                 margin: 0 auto;
             }
+			
 		</style>	
 		<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
 	</head>
 	<body>	
-        <button id="itemGen">Click me</button>
+        <div class="itemGenButton" id="itemGen">Generate Items</div>
 		<div id="weaponContainer" class="wrapper">
 		</div>
 		<script src="js/itemGen.js" type="text/javascript"></script>
