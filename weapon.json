@@ -427,7 +427,8 @@
 			"qualityMod": 1,
 			"costMod": 1,
 			"damMod": 1,
-			"damType": "Physical",
+			"elemType": "Physical",
+            "resistance": 0,
             "tier": 0
 		},
         {
@@ -435,7 +436,8 @@
 			"qualityMod": 10,
 			"costMod": 1.25,
 			"damMod": 1.05,
-			"damType": "Fire",
+			"elemType": "Fire",
+            "resistance": 5,
             "tier": 1
         },
 		{
@@ -443,7 +445,8 @@
 			"qualityMod": 20,
 			"costMod": 2,
 			"damMod": 1.15,
-			"damType": "Fire",
+			"elemType": "Fire",
+            "resistance": 10,
             "tier": 3
 		},
         {
@@ -451,7 +454,8 @@
 			"qualityMod": 30,
 			"costMod": 2.25,
 			"damMod": 1.35,
-			"damType": "Fire",
+			"elemType": "Fire",
+            "resistance": 25,
             "tier": 5
         },
         {
@@ -459,7 +463,8 @@
 			"qualityMod": 45,
 			"costMod": 2.75,
 			"damMod": 1.55,
-			"damType": "Fire",
+			"elemType": "Fire",
+            "resistance": 35,
             "tier": 7
         },
         {
@@ -467,7 +472,8 @@
 			"qualityMod": 70,
 			"costMod": 4,
 			"damMod": 2,
-			"damType": "Fire",
+			"elemType": "Fire",
+            "resistance": 60,
             "tier": 9
         },
         { 
@@ -475,7 +481,8 @@
 			"qualityMod": 10,
 			"costMod": 1.5,
 			"damMod": 1.15,
-			"damType": "Ice",
+			"elemType": "Ice",
+            "resistance": 5,
             "tier": 1
         },
 		{
@@ -483,7 +490,8 @@
 			"qualityMod": 20,
 			"costMod": 2.25,
 			"damMod": 1.35,
-			"damType": "Ice",
+			"elemType": "Ice",
+            "resistance": 10,
             "tier": 3
 		},
         {
@@ -491,7 +499,8 @@
 			"qualityMod": 30,
 			"costMod": 2.5,
 			"damMod": 1.5,
-			"damType": "Ice",
+			"elemType": "Ice",
+            "resistance": 25,
             "tier": 5
         },
         {
@@ -499,7 +508,8 @@
 			"qualityMod": 45,
 			"costMod": 3.25,
 			"damMod": 1.65,
-			"damType": "Ice",
+			"elemType": "Ice",
+            "resistance": 35,
             "tier": 7
         },
         {
@@ -507,7 +517,8 @@
 			"qualityMod": 65,
 			"costMod": 5,
 			"damMod": 2.15,
-			"damType": "Ice",
+			"elemType": "Ice",
+            "resistance": 60,
             "tier": 9
         },
 		{
@@ -515,7 +526,8 @@
 			"qualityMod": 20,
 			"costMod": 2,
 			"damMod": 1.15,
-			"damType": "Lightning",
+			"elemType": "Lightning",
+            "resistance": 5,
             "tier": 3
 		},
         {
@@ -523,7 +535,8 @@
 			"qualityMod": 15,
 			"costMod": 1.65,
 			"damMod": 1.15,
-			"damType": "Holy",
+			"elemType": "Holy",
+            "resistance": 5,
             "tier": 1
         },
         {
@@ -531,7 +544,8 @@
 			"qualityMod": 30,
 			"costMod": 2.25,
 			"damMod": 1.35,
-			"damType": "Holy",
+			"elemType": "Holy",
+            "resistance": 10,
             "tier": 3
         },
 		{
@@ -539,7 +553,8 @@
 			"qualityMod": 40,
 			"costMod": 4.5,
 			"damMod": 1.55,
-			"damType": "Holy",
+			"elemType": "Holy",
+            "resistance": 25,
             "tier": 5
 		},
         {
@@ -547,7 +562,8 @@
 			"qualityMod": 60,
 			"costMod": 6,
 			"damMod": 2,
-			"damType": "Holy",
+			"elemType": "Holy",
+            "resistance": 35,
             "tier": 7
         },
         {
@@ -555,7 +571,8 @@
 			"qualityMod": 90,
 			"costMod": 7,
 			"damMod": 2.35,
-			"damType": "Holy",
+			"elemType": "Holy",
+            "resistance": 60,
             "tier": 9
         }
 	],
@@ -1050,5 +1067,9 @@
               "costMod": 10
           }
         ]
+    },
+    "legendaryNames": {
+        "first": ["Stellar ", "Fiesty ", "Cruel ", "Office ", "Peerless ", "Bedazzled ", "Hornet ", "Watchful ", "Furious "],
+        "second": ["Night", "Muffin", "Bongo", "Worker", "Adjective", "Noun", "Adverb", "Dongs"]
     }
   }

@@ -3,16 +3,32 @@ function gId(elemId) {
 }
 
 function checkProps(itemObj, gearType, itemType, qual, mat) {
-	let itemProps = {};
-	itemProps.tr = [];
-	itemProps.fa = [];
 	if(!itemObj.qualityLevels[qual].applicableGearTypes.hasOwnProperty(gearType) || itemObj.qualityLevels[qual].tier > itemObj.itemTypes[gearType][itemType].tier || !itemObj.qualityLevels[qual].applicableMaterial.hasOwnProperty(mat)) {
-		itemProps.fa.push('1');
+		return false;
 	}
 	else {
-		itemProps.tr.push('1');
+		return true;
 	}
-	return itemProps;
+}
+
+function getObj(itemObj) {
+    return itemObj;
+}
+
+function getGearType(weapon, gearType) {
+    let itemObj = getObj(weapon);
+    return itemObj.itemTypes[gearType];
+}
+
+function generateItem(weapon, gearType) {
+    let gGearType = getGearType(weapon, gearType);
+    let itemTypePos = randomNum(0, (gGearType.length - 1));
+    return weapon.itemTypes[gearType][itemTypePos];
+}
+
+function generateMaterial(itemObj, gearPiece) {
+    let itemMatPos = randomNum(0, (itemObj.itemMaterials[gearPiece.materialType].length - 1));
+    return itemObj.itemMaterials[gearPiece.materialType][itemMatPos];
 }
 
 function generateWeapon(weapon, type) {  
@@ -30,9 +46,23 @@ function generateWeapon(weapon, type) {
     over it every time I need to check it)
   */
   modifiers = {};
+  let testObj = getObj(weapon);
+  let testItem = generateItem(testObj, type);
+  console.log(testItem);
+  let testVar = generateMaterial(testObj, testItem);
+  console.log(testVar);
+
   let hasElem = false;
   let hasPrefix = false;
   let hasSuffix = false;
+  let iElem = randomNum(0, (weapon.elemMods.length - 1));  
+  console.log("Initial elemental mod tier: " + weapon.elemMods[iElem].tier);
+  while(weapon.elemMods[iElem].tier > weapon.itemTypes[type][iType].tier) {
+    iElem = randomNum(0, (weapon.elemMods.length - 1)) ;
+  }
+  if(iElem != 0) {
+    hasElem = true;
+  }
     
   console.log("Item tier: " + weapon.itemTypes[type][iType].tier);	
   console.log("Initial quality tier: " + weapon.qualityLevels[iQuality].tier);
@@ -40,8 +70,7 @@ function generateWeapon(weapon, type) {
   console.log("Initial suffix tier: " + weapon.suffixes[iSuffix].tier);    
   let iProps = checkProps(weapon, type, iType, iQuality, iMatType);
 	
-  while(iProps.fa.length != 0) {
-	console.log(iProps.fa); 
+  while(iProps == false) { 
 	iQuality = randomNum(0, (weapon.qualityLevels.length - 1));
 	iProps = checkProps(weapon, type, iType, iQuality, iMatType);	 
   }
@@ -57,6 +86,7 @@ function generateWeapon(weapon, type) {
   console.log("Modified quality tier: " + weapon.qualityLevels[iQuality].tier); 
   console.log("Modified prefix tier: " + weapon.prefixes[iPrefix].tier);
   console.log("Modified suffix tier: " + weapon.suffixes[iSuffix].tier);
+  console.log("Modified elemental mod tier: " + weapon.elemMods[iElem].tier);
   /*
     I insert the prefix/suffix modifiers first, so I can use any 
     of their properties (mainly damage modifiers) in later calculations.
@@ -83,15 +113,6 @@ function generateWeapon(weapon, type) {
 	  }
   };
   if(type === 'weapon') {
-    let iElem = randomNum(0, (weapon.elemMods.length - 1));  
-    console.log("Initial elemental mod tier: " + weapon.elemMods[iElem].tier);
-    while(weapon.elemMods[iElem].tier > weapon.itemTypes[type][iType].tier) {
-        iElem = randomNum(0, (weapon.elemMods.length - 1)) ;
-      }
-	  if(iElem != 0) {
-	  	hasElem = true;
-	  }
-       console.log("Modified elemental mod tier: " + weapon.elemMods[iElem].tier);
       /*
         These calculations are  used to determine the min/max damage of 
         a weapon after material and quality modifiers are applied.  
@@ -129,10 +150,9 @@ function generateWeapon(weapon, type) {
         type associated with it (even the dummy entry), so I use this
         to determine what type of damage the weapon will do.
       */
-      var damType = weapon.elemMods[iElem].damType;
+      var elemType = weapon.elemMods[iElem].elemType;
       
-     //Here we construct a string for the weapon name, using the names from each object in the JSON.
-      var weaponName = weapon.elemMods[iElem].name + ' ' + weapon.qualityLevels[iQuality].name + ' ' + weapon.prefixes[iPrefix].name + ' ' + weapon.itemMaterials[iMatType][iMaterial].name + ' ' + weapon.itemTypes[type][iType].name + weapon.suffixes[iSuffix].name;
+    
       /*
     This quality level is eventually used to determine the "rarity" of an item. All the
     'non-essential' quality modifiers (such as weapon type, prefix/suffix quality modifiers)
@@ -146,11 +166,15 @@ function generateWeapon(weapon, type) {
   if(type === 'armor') {
     let adjustMinDam = '';
     let adjustMaxDam = '';
-    let damType = '';
+    let elemType = weapon.elemMods[iElem].elemType;
+    console.log('iElem is ' + iElem);
+    if (iElem != 0) {
+        modifiers[elemType + ' Resistance'] = weapon.elemMods[iElem].resistance;
+    }
     armorValue = randomNum(weapon.itemTypes[type][iType].minArmor, weapon.itemTypes[type][iType].maxArmor);
 	armorValue = Math.floor((armorValue + weapon.itemMaterials[iMatType][iMaterial].armorMod) * weapon.qualityLevels[iQuality].armorMod);
     //Here we construct a string for the weapon name, using the names from each object in the JSON.
-    var weaponName = weapon.qualityLevels[iQuality].name + ' ' + weapon.prefixes[iPrefix].name + ' ' + weapon.itemMaterials[iMatType][iMaterial].name + ' ' + weapon.itemTypes[type][iType].name + weapon.suffixes[iSuffix].name;
+//    var weaponName = weapon.qualityLevels[iQuality].name + ' ' + weapon.prefixes[iPrefix].name + ' ' + weapon.itemMaterials[iMatType][iMaterial].name + ' ' + weapon.itemTypes[type][iType].name + weapon.suffixes[iSuffix].name;
       /*
         This quality level is eventually used to determine the "rarity" of an item. All the
         'non-essential' quality modifiers (such as weapon type, prefix/suffix quality modifiers)
@@ -158,10 +182,12 @@ function generateWeapon(weapon, type) {
         quality of the weapon itself) is used muliplicatively, since the way I see it, it has
         a great overall impact on the "value" than anything else.
       */
+      
     var weaponQuality = Math.floor((weapon.itemTypes[type][iType].baseQuality + weapon.itemMaterials[iMatType][iMaterial].qualityMod + weapon.suffixes[iSuffix].qualityMod) * weapon.qualityLevels[iQuality].qualityMod);
     var wCost = Math.ceil((weapon.itemTypes[type][iType].baseCost * weapon.itemMaterials[iMatType][iMaterial].costMod * weapon.prefixes[iPrefix].costMod * weapon.suffixes[iSuffix].costMod) * weapon.qualityLevels[iQuality].costMod);  
   } 
-	
+   //Here we construct a string for the weapon name, using the names from each object in the JSON.
+      var weaponName = weapon.elemMods[iElem].name + ' ' + weapon.qualityLevels[iQuality].name + ' ' + weapon.prefixes[iPrefix].name + ' ' + weapon.itemMaterials[iMatType][iMaterial].name + ' ' + weapon.itemTypes[type][iType].name + weapon.suffixes[iSuffix].name;
   let wSlot = weapon.itemTypes[type][iType].slot;
 	
   return {
@@ -181,7 +207,7 @@ function generateWeapon(weapon, type) {
 	  hasElem: hasElem,
 	  hasPrefix: hasPrefix,
 	  hasSuffix: hasSuffix,
-	  damType: damType,
+	  elemType: elemType,
 	  statMod: modifiers,
 	  cost: wCost,
       slot: wSlot
@@ -201,8 +227,8 @@ gId('itemGen').addEventListener('click', function() {
 	.done(function(data) {       
         gId('weaponContainer').innerHTML = '';
         var weaponDiv = document.createElement('div');
-		let legendaryNameFirst = ['Stellar ', 'Fiesty ', 'Cruel ', 'Office ', 'Peerless ', 'Bedazzled ', 'Hornet ', 'Watchful '];
-		let legendaryNameSecond = ['Night', 'Muffin', 'Bongo', 'Worker', 'Adjective', 'Noun', 'Adverb', 'Dongs'];
+//		let legendaryNameFirst = ['Stellar ', 'Fiesty ', 'Cruel ', 'Office ', 'Peerless ', 'Bedazzled ', 'Hornet ', 'Watchful ', 'Furious '];
+//		let legendaryNameSecond = ['Night', 'Muffin', 'Bongo', 'Worker', 'Adjective', 'Noun', 'Adverb', 'Dongs'];
         for(var i = 0; i < 6; i++) {
             let itemTypeValue = randomNum(0, (Object.keys(data.itemTypes).length - 1)); 
             console.log("=========================");
@@ -237,27 +263,27 @@ gId('itemGen').addEventListener('click', function() {
             */	
 			wName.innerHTML = weap1.gWeap.name;
             if(!weap1.gWeap.hasElem && !weap1.gWeap.hasPrefix && !weap1.gWeap.hasSuffix) {
-                wName.style.backgroundColor = 'Black';
+                wName.style.backgroundColor = 'Black'; //Common
             }
 			else if (weap1.gWeap.hasElem || weap1.gWeap.hasPrefix || weap1.gWeap.hasSuffix) {				
-				wName.style.backgroundColor = '#206720'; //Green
+				wName.style.backgroundColor = '#206720'; //Green Uncommon
 				if (weap1.gWeap.hasPrefix && weap1.gWeap.hasElem || weap1.gWeap.hasSuffix & weap1.gWeap.hasElem || weap1.gWeap.hasPrefix && weap1.gWeap.hasSuffix) {
-					wName.style.backgroundColor = '#2424a2'; //Blue
+					wName.style.backgroundColor = '#2424a2'; //Blue Rare
 				}
 				if (weap1.gWeap.hasPrefix && weap1.gWeap.hasSuffix && weap1.gWeap.hasElem) {
 					wName.style.backgroundColor = 'Purple'; //Purple
 					if(weap1.gWeap.quality >= 1000) {
-						wName.style.backgroundColor = '#d35d13'; //Orange
-						let firstNamePosition = randomNum(0, (legendaryNameFirst.length - 1));
-						let secondNamePosition = randomNum(0, (legendaryNameSecond.length - 1));
-						wName.innerHTML = "The " + weap1.gWeap.type + " '" + legendaryNameFirst[firstNamePosition] + legendaryNameSecond[secondNamePosition] + "'";
+						wName.style.backgroundColor = '#d35d13'; //Orange Legendary
+						let firstNamePosition = randomNum(0, (data.legendaryNames.first.length - 1));
+						let secondNamePosition = randomNum(0, (data.legendaryNames.second.length - 1));
+						wName.innerHTML = "The " + weap1.gWeap.type + " '" + data.legendaryNames.first[firstNamePosition] + data.legendaryNames.second[secondNamePosition] + "'";
 					}
 				}
 			}
 
             	
             if (Object.keys(data.itemTypes)[itemTypeValue] === 'weapon') {
-                wDam.innerHTML = 'Damage: ' + weap1.gWeap.minDam + ' - ' + weap1.gWeap.maxDam + ' ' + weap1.gWeap.damType + " | Slot: " + weap1.gWeap.slot;
+                wDam.innerHTML = 'Damage: ' + weap1.gWeap.minDam + ' - ' + weap1.gWeap.maxDam + ' ' + weap1.gWeap.elemType + " | Slot: " + weap1.gWeap.slot;
             }
             if (Object.keys(data.itemTypes)[itemTypeValue] === 'armor') {
                  wDam.innerHTML = 'Armor: ' + weap1.gWeap.armor + " | Slot: " + weap1.gWeap.slot;
