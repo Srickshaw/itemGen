@@ -231,25 +231,26 @@ gId('itemGen').addEventListener('click', function() {
 				let wStat = createComponent('div', mods.map((mod) => createComponent('p', [mod], ['modString'])), ['stat-container']);
 				itemProps.push(wStat);
 			}
+
 			console.log(weap1.gWeap.elemType);
-			if(!weap1.gWeap.hasElem && !weap1.gWeap.hasPrefix && !weap1.gWeap.hasSuffix) {
-				wName.style.backgroundColor = 'Black'; //Common
-			}
-			else if (weap1.gWeap.hasElem || weap1.gWeap.hasPrefix || weap1.gWeap.hasSuffix) {
-				wName.style.backgroundColor = '#206720'; //Green Uncommon
-				if (weap1.gWeap.hasPrefix && weap1.gWeap.hasElem || weap1.gWeap.hasSuffix & weap1.gWeap.hasElem || weap1.gWeap.hasPrefix && weap1.gWeap.hasSuffix) {
-					wName.style.backgroundColor = '#2424a2'; //Blue Rare
-				}
-				if (weap1.gWeap.hasPrefix && weap1.gWeap.hasSuffix && weap1.gWeap.hasElem) {
-					wName.style.backgroundColor = 'Purple'; //Purple
-					if(weap1.gWeap.quality >= 1000) {
-						wName.style.backgroundColor = '#d35d13'; //Orange Legendary
-						let firstNamePosition = randomNum(0, (data.legendaryNames.first.length - 1));
-						let secondNamePosition = randomNum(0, (data.legendaryNames.second.length - 1));
-						wName.innerHTML = "The " + weap1.gWeap.type + " '" + data.legendaryNames.first[firstNamePosition] + data.legendaryNames.second[secondNamePosition] + "'";
-					}
-				}
-			}
+			// if(!weap1.gWeap.hasElem && !weap1.gWeap.hasPrefix && !weap1.gWeap.hasSuffix) {
+			// 	wName.style.backgroundColor = 'Black'; //Common
+			// }
+			// else if (weap1.gWeap.hasElem || weap1.gWeap.hasPrefix || weap1.gWeap.hasSuffix) {
+			// 	wName.style.backgroundColor = '#206720'; //Green Uncommon
+			// 	if (weap1.gWeap.hasPrefix && weap1.gWeap.hasElem || weap1.gWeap.hasSuffix & weap1.gWeap.hasElem || weap1.gWeap.hasPrefix && weap1.gWeap.hasSuffix) {
+			// 		wName.style.backgroundColor = '#2424a2'; //Blue Rare
+			// 	}
+			// 	if (weap1.gWeap.hasPrefix && weap1.gWeap.hasSuffix && weap1.gWeap.hasElem) {
+			// 		wName.style.backgroundColor = 'Purple'; //Purple
+			// 		if(weap1.gWeap.quality >= 1000) {
+			// 			wName.style.backgroundColor = '#d35d13'; //Orange Legendary
+			// 			let firstNamePosition = randomNum(0, (data.legendaryNames.first.length - 1));
+			// 			let secondNamePosition = randomNum(0, (data.legendaryNames.second.length - 1));
+			// 			wName.innerHTML = "The " + weap1.gWeap.type + " '" + data.legendaryNames.first[firstNamePosition] + data.legendaryNames.second[secondNamePosition] + "'";
+			// 		}
+			// 	}
+			// }
 
 			let wCost = createComponent('p', ['Cost: ' + weap1.gWeap.cost + 'g']);
 			itemProps.push(wCost);
