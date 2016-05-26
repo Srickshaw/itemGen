@@ -9,7 +9,8 @@
         "baseCost": 25,
         "materialType": "metal",
         "slot": "Either hand",
-        "tier": 1
+        "tier": 1,
+        "type": "weapon"
       },
       {
         "name": "Main Gauche",
@@ -19,7 +20,8 @@
         "baseCost": 50,
         "materialType": "metal",
         "slot": "Off hand",
-        "tier": 3
+        "tier": 3,
+        "type": "weapon"
       },
       {
         "name": "Swordbreaker",
@@ -29,7 +31,8 @@
         "baseCost": 100,
         "materialType": "metal",
         "slot": "Off hand",
-        "tier": 6
+        "tier": 6,
+        "type": "weapon"
       },
       {
         "name": "Short Sword",
@@ -39,7 +42,8 @@
         "baseCost": 25,
         "materialType": "metal",
         "slot": "Either hand",
-        "tier": 2
+        "tier": 2,
+        "type": "weapon"
       },
       {
         "name": "Bec de Corbin",
@@ -49,7 +53,8 @@
         "baseCost": 300,
         "materialType": "metal",
         "slot": "Main hand",
-        "tier": 5
+        "tier": 5,
+        "type": "weapon"
       },
       {
         "name": "Poniard",
@@ -59,7 +64,8 @@
         "baseCost": 325,
         "materialType": "metal",
         "slot": "Either hand",
-        "tier": 9
+        "tier": 9,
+        "type": "weapon"
       },
       {
         "name": "Flamberge",
@@ -69,7 +75,8 @@
         "baseCost": 625,
         "materialType": "metal",
         "slot": "Both hands",
-        "tier": 8
+        "tier": 8,
+        "type": "weapon"
       },
       {
         "name": "Kingslayer Blade",
@@ -79,7 +86,8 @@
         "baseCost": 1225,
         "materialType": "metal",
         "slot": "Both hands",
-        "tier": 11
+        "tier": 11,
+        "type": "weapon"
       },
       {
         "name": "Long Sword",
@@ -89,7 +97,8 @@
         "baseCost": 80,
         "materialType": "metal",
         "slot": "Main hand",
-        "tier": 3
+        "tier": 3,
+        "type": "weapon"
       },
       {
         "name": "Club",
@@ -99,7 +108,8 @@
         "baseCost": 10,
         "materialType": "wood",
         "slot": "Main hand",
-        "tier": 1
+        "tier": 1,
+        "type": "weapon"
       },
       {
         "name": "Mace",
@@ -109,7 +119,8 @@
         "baseCost": 100,
         "materialType": "metal",
         "slot": "Main hand",
-        "tier": 4
+        "tier": 4,
+        "type": "weapon"
       },
       {
         "name": "Spear",
@@ -119,7 +130,8 @@
         "baseCost": 250,
         "materialType": "metal",
         "slot": "Main hand",
-        "tier": 4
+        "tier": 4,
+        "type": "weapon"
       },
       {
         "name": "Short Bow",
@@ -129,7 +141,8 @@
         "baseCost": 155,
         "materialType": "wood",
         "slot": "Both hands",
-        "tier": 2
+        "tier": 2,
+        "type": "weapon"
       },
       {
         "name": "Siege Bow",
@@ -139,7 +152,8 @@
         "baseCost": 325,
         "materialType": "wood",
         "slot": "Both hands",
-        "tier": 7
+        "tier": 7,
+        "type": "weapon"
       },
       {
         "name": "Long Bow",
@@ -149,7 +163,8 @@
         "baseCost": 225,
         "materialType": "wood",
         "slot": "Both hands",
-        "tier": 4
+        "tier": 4,
+        "type": "weapon"
       }
     ],
     "armor": [
@@ -161,7 +176,8 @@
         "baseCost": 225,
         "materialType": "leather",
         "slot": "Torso",
-        "tier": 1
+        "tier": 1,
+        "type": "armor"
       },
       {
         "name": "Doublet",
@@ -171,7 +187,8 @@
         "baseCost": 225,
         "materialType": "leather",
         "slot": "Torso",
-        "tier": 3
+        "tier": 3,
+        "type": "armor"
       },
       {
         "name": "Studded Armor",
@@ -181,7 +198,8 @@
         "baseCost": 225,
         "materialType": "leather",
         "slot": "Torso",
-        "tier": 5
+        "tier": 5,
+        "type": "armor"
       },
       {
         "name": "Shadowmeld Armor",
@@ -191,7 +209,8 @@
         "baseCost": 225,
         "materialType": "leather",
         "slot": "Torso",
-        "tier": 8
+        "tier": 8,
+        "type": "armor"
       },
       {
         "name": "Chain Mail",
@@ -201,7 +220,8 @@
         "baseCost": 225,
         "materialType": "metal",
         "slot": "Torso",
-        "tier": 3
+        "tier": 3,
+        "type": "armor"
       },
       {
         "name": "Scale Mail",
@@ -211,7 +231,8 @@
         "baseCost": 225,
         "materialType": "metal",
         "slot": "Torso",
-        "tier": 6
+        "tier": 6,
+        "type": "armor"
       },
       {
         "name": "Bar Armor",
@@ -221,7 +242,8 @@
         "baseCost": 225,
         "materialType": "metal",
         "slot": "Torso",
-        "tier": 7
+        "tier": 7,
+        "type": "armor"
       },
       {
         "name": "Plate Armor",
@@ -231,7 +253,8 @@
         "baseCost": 225,
         "materialType": "metal",
         "slot": "Torso",
-        "tier": 9
+        "tier": 9,
+        "type": "armor"
       },
       {
         "name": "Simple Robe",
@@ -241,7 +264,8 @@
         "baseCost": 225,
         "materialType": "cloth",
         "slot": "Torso",
-        "tier": 1
+        "tier": 1,
+        "type": "armor"
       },
       {
         "name": "Acolyte Robe",
@@ -251,7 +275,8 @@
         "baseCost": 225,
         "materialType": "cloth",
         "slot": "Torso",
-        "tier": 3
+        "tier": 3,
+        "type": "armor"
       },
       {
         "name": "Priest Robe",
@@ -261,7 +286,8 @@
         "baseCost": 225,
         "materialType": "cloth",
         "slot": "Torso",
-        "tier": 6
+        "tier": 6,
+        "type": "armor"
       },
       {
         "name": "Archmage Robe",
@@ -271,7 +297,8 @@
         "baseCost": 225,
         "materialType": "cloth",
         "slot": "Torso",
-        "tier": 8
+        "tier": 8,
+        "type": "armor"
       }
     ]
   },
@@ -423,7 +450,7 @@
 
   "elemMods": [
     {
-      "name": " ",
+      "name": "",
       "qualityMod": 1,
       "costMod": 1,
       "damMod": 1,
@@ -579,7 +606,7 @@
 
   "prefixes": [
     {
-      "name": " ",
+      "name": "",
       "statMod": "",
       "modAmt": "",
       "qualityMod": 0,
@@ -625,7 +652,7 @@
   ],
   "suffixes": [
     {
-      "name": " ",
+      "name": "",
       "statMod": "",
       "lowerModAmt": "",
       "upperModAmt": "",
@@ -634,7 +661,7 @@
       "tier": 0
     },
     {
-      "name": " of Confusion",
+      "name": "of Confusion",
       "statMod": ["Chance to Confuse on Hit"],
       "lowerModAmt": [0.05],
       "upperModAmt": [0.05],
@@ -643,7 +670,7 @@
       "tier": 2
     },
     {
-      "name": " of Divine Wrath",
+      "name": "of Divine Wrath",
       "statMod": [ "Strength", "Dexterity", "Damage", "Health Regeneration" ],
       "lowerModAmt": [50, 50, 10, 0.15],
       "upperModAmt": [100, 100, 25, 0.15],
@@ -652,7 +679,7 @@
       "tier": 8
     },
     {
-      "name": " of Warlocks",
+      "name": "of Warlocks",
       "statMod": ["Mana Regeneration"],
       "lowerModAmt": [0.15],
       "upperModAmt": [0.15],
@@ -661,7 +688,7 @@
       "tier": 4
     },
     {
-      "name": " of Wounding",
+      "name": "of Wounding",
       "statMod": ["Damage"],
       "lowerModAmt": [3],
       "upperModAmt": [7],
@@ -670,7 +697,7 @@
       "tier": 2
     },
     {
-      "name": " of Open Wounds",
+      "name": "of Open Wounds",
       "statMod": ["Damage", "Chance to Bleed"],
       "lowerModAmt": [3, 0.10],
       "upperModAmt": [6, 0.10],
@@ -679,7 +706,7 @@
       "tier": 5
     },
     {
-      "name": " of Serious Wounds",
+      "name": "of Serious Wounds",
       "statMod": ["Damage"],
       "lowerModAmt": [8],
       "upperModAmt": [15],
@@ -688,7 +715,7 @@
       "tier": 6
     },
     {
-      "name": " of Laceration",
+      "name": "of Laceration",
       "statMod": ["Damage", "Chance to Bleed"],
       "lowerModAmt": [4, 0.25],
       "upperModAmt": [9, 0.25],
@@ -697,7 +724,7 @@
       "tier": 7
     },
     {
-      "name": " of Grevious Wounds",
+      "name": "of Grevious Wounds",
       "statMod": ["Damage"],
       "lowerModAmt": [12],
       "upperModAmt": [18],
