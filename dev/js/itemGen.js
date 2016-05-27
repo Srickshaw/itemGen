@@ -87,24 +87,24 @@ const addPreSuf = (itemObj, gearPiece, generatedItem) => {
 function calculateModifiers(generatedItem) {
   generatedItem['modifiers'] = {};
   if(generatedItem.prefix.name !== "") {
-	  generatedItem['modifiers'] = Object.assign(generatedItem['modifiers'],Object.keys(generatedItem.prefix.statMod).reduce((a, b, i) =>
+    generatedItem['modifiers'] = Object.assign(generatedItem['modifiers'],Object.keys(generatedItem.prefix.statMod).reduce((a, b, i) =>
     {
       a[generatedItem.prefix.statMod[i]] = randomNum(generatedItem.prefix.lowerModAmt[i],
       generatedItem.prefix.upperModAmt[i]);
-			return a;
+      return a;
     }, {}));
   }
   if(generatedItem.suffix.name !== ""){
     generatedItem['modifiers'] = Object.assign(generatedItem['modifiers'], Object.keys(generatedItem.suffix.statMod).reduce((a, b, i) =>
     {
-			const calcSuffixMod = randomNum(generatedItem.suffix.lowerModAmt[i], generatedItem.suffix.upperModAmt[i])
-		  if(generatedItem['modifiers'].hasOwnProperty(generatedItem.suffix.statMod[i])) {
-			  a[generatedItem.suffix.statMod[i]] += calcSuffixMod;
-		  } else {
-			  a[generatedItem.suffix.statMod[i]] = calcSuffixMod;
-		  }
-		  return a
-		}, {}));
+      const calcSuffixMod = randomNum(generatedItem.suffix.lowerModAmt[i], generatedItem.suffix.upperModAmt[i])
+      if(generatedItem['modifiers'].hasOwnProperty(generatedItem.suffix.statMod[i])) {
+        a[generatedItem.suffix.statMod[i]] += calcSuffixMod;
+      } else {
+        a[generatedItem.suffix.statMod[i]] = calcSuffixMod;
+      }
+      return a
+    }, {}));
   }
   return generatedItem['modifiers'];
 }
@@ -135,18 +135,18 @@ const calculateItemStats = (generatedItem) => {
 }
 
 const calculateDamage = (generatedItem) => {
-	let baseMinDam = Math.floor((generatedItem.item.minDam + generatedItem.material.minDamMod) * generatedItem.quality.damMod);
-	let baseMaxDam = Math.floor((generatedItem.item.maxDam + generatedItem.material.maxDamMod) * generatedItem.quality.damMod);
-	if (generatedItem.modifiers.hasOwnProperty('damage')) {
-		baseMinDam = Math.floor(baseMinDam + ( baseMinDam * (generatedItem.modifiers["Damage"] / 100)));
-		baseMaxDam = Math.floor(baseMinDam + ( baseMinDam * (generatedItem.modifiers["Damage"] / 100)));
-	}
-	if (generatedItem.elemMod.name != '') {
-		baseMinDam = Math.floor(baseMinDam + (baseMinDam * generatedItem.elemMod.damMod));
-		baseMaxDam = Math.floor(baseMaxDam + (baseMaxDam * generatedItem.elemMod.damMod));
-	}
-	generatedItem['minDam'] = baseMinDam;
-	generatedItem['maxDam'] = baseMaxDam;
+  let baseMinDam = Math.floor((generatedItem.item.minDam + generatedItem.material.minDamMod) * generatedItem.quality.damMod);
+  let baseMaxDam = Math.floor((generatedItem.item.maxDam + generatedItem.material.maxDamMod) * generatedItem.quality.damMod);
+  if (generatedItem.modifiers.hasOwnProperty('damage')) {
+    baseMinDam = Math.floor(baseMinDam + ( baseMinDam * (generatedItem.modifiers["Damage"] / 100)));
+    baseMaxDam = Math.floor(baseMinDam + ( baseMinDam * (generatedItem.modifiers["Damage"] / 100)));
+  }
+  if (generatedItem.elemMod.name != '') {
+    baseMinDam = Math.floor(baseMinDam + (baseMinDam * generatedItem.elemMod.damMod));
+    baseMaxDam = Math.floor(baseMaxDam + (baseMaxDam * generatedItem.elemMod.damMod));
+  }
+  generatedItem['minDam'] = baseMinDam;
+  generatedItem['maxDam'] = baseMaxDam;
 }
 
 const calculateArmor = generatedItem => {
