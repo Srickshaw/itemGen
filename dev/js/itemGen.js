@@ -15,16 +15,16 @@ const gId = (elemId) => {
 
 const checkProps = (itemObj, {type, materialType, tier: gearTier}, qual) => {
   const {
-		applicableGearTypes,
-		tier: qualityTier,
-		applicableMaterial
-	} = itemObj.qualityLevels[qual];
+    applicableGearTypes,
+    tier: qualityTier,
+    applicableMaterial
+  } = itemObj.qualityLevels[qual];
 
-	return !(
-		!applicableGearTypes.hasOwnProperty(type) ||
-		qualityTier > gearTier ||
-		!applicableMaterial.hasOwnProperty(materialType)
-	);
+  return !(
+    !applicableGearTypes.hasOwnProperty(type) ||
+    qualityTier > gearTier ||
+    !applicableMaterial.hasOwnProperty(materialType)
+  );
 }
 
 const checkPreSuf = (itemObj, gearPiece, pre, suf) => {
@@ -34,7 +34,7 @@ const checkPreSuf = (itemObj, gearPiece, pre, suf) => {
   return [
     itemObj.prefixes[pre],
     itemObj.suffixes[suf]
-	]
+  ]
 }
 
 
@@ -225,9 +225,9 @@ const createDamArmString = (arr, obj) => {
 
 const determineRarity = (obj, arr) => {
   const namePanel = arr[0];
-	const elemModName = obj.elemMod.name;
-	const prefixName = obj.prefix.name;
-	const suffixName = obj.suffix.name;
+  const elemModName = obj.elemMod.name;
+  const prefixName = obj.prefix.name;
+  const suffixName = obj.suffix.name;
   if(elemModName || prefixName || suffixName) {
     let color = '#206720';
     if(elemModName && prefixName || elemModName && suffixName ||
@@ -240,7 +240,7 @@ const determineRarity = (obj, arr) => {
         color = '#d35d13';
       }
     }
-		namePanel.style.backgroundColor = color;
+    namePanel.style.backgroundColor = color;
   }
 }
 
