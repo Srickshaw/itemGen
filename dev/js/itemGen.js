@@ -2,36 +2,47 @@ const gId = (elemId) => {
   return document.getElementById(elemId);
 }
 
-const checkProps = (itemObj, gearPiece, qual) => {
-  if(!itemObj.qualityLevels[qual].applicableGearTypes.hasOwnProperty(gearPiece.type) ||
-  itemObj.qualityLevels[qual].tier > gearPiece.tier ||
-  !itemObj.qualityLevels[qual].applicableMaterial.hasOwnProperty(gearPiece.materialType)) {
-    return false;
-  }
-  else {
-    return true;
-  }
+// const checkProps = (itemObj, gearPiece, qual) => {
+//   if(!itemObj.qualityLevels[qual].applicableGearTypes.hasOwnProperty(gearPiece.type) ||
+//   itemObj.qualityLevels[qual].tier > gearPiece.tier ||
+//   !itemObj.qualityLevels[qual].applicableMaterial.hasOwnProperty(gearPiece.materialType)) {
+//     return false;
+//   }
+//   else {
+//     return true;
+//   }
+// }
+
+const checkProps = (itemObj, {type, materialType, tier: gearTier}, qual) => {
+  const {
+		applicableGearTypes,
+		tier: qualityTier,
+		applicableMaterial
+	} = itemObj.qualityLevels[qual];
+
+	return !(
+		!applicableGearTypes.hasOwnProperty(type) ||
+		qualityTier > gearTier ||
+		!applicableMaterial.hasOwnProperty(materialType)
+	);
 }
 
 const checkPreSuf = (itemObj, gearPiece, pre, suf) => {
   if (itemObj.prefixes[pre].tier > gearPiece.tier && itemObj.suffixes[suf].tier > gearPiece.tier) {
     return false;
   }
-  else {
-    const itemPreSuf = [];
-    itemPreSuf.push(itemObj.prefixes[pre]);
-    itemPreSuf.push(itemObj.suffixes[suf]);
-    return itemPreSuf;
-	}
+  return [
+    itemObj.prefixes[pre],
+    itemObj.suffixes[suf]
+	]
 }
+
 
 const checkElemMod = (elemMod, gearPiece) => {
   if (elemMod.tier > gearPiece.tier) {
     return false;
   }
-  else {
-    return elemMod;
-  }
+  return elemMod;
 }
 
 const getGearType = (itemObj, gearType) => {
@@ -64,18 +75,15 @@ const generateItem = (itemObj, gearType) => {
 }
 
 const generateQuality = (itemObj) => {
-  const iQuality = randomNum(0, (itemObj.qualityLevels.length - 1));
-  return iQuality;
+  return randomNum(0, (itemObj.qualityLevels.length - 1));
 }
 
 const generatePrefix = (itemObj) => {
-  const itemPrefix = randomNum(0, (itemObj.prefixes.length - 1));
-  return itemPrefix;
+  return randomNum(0, (itemObj.prefixes.length - 1));
 }
 
 const generateSuffix = (itemObj) => {
-  const itemSuffix = randomNum(0, (itemObj.prefixes.length - 1));
-  return itemSuffix;
+  return randomNum(0, (itemObj.prefixes.length - 1));
 }
 
 const addPreSuf = (itemObj, gearPiece, generatedItem) => {
@@ -109,8 +117,7 @@ const calculateModifiers = (generatedItem) => {
 }
 
 const generateElemMod = (itemObj) => {
-  const elemMod = randomNum(0, (itemObj.elemMods.length - 1));
-  return elemMod;
+  return randomNum(0, (itemObj.elemMods.length - 1));
 }
 
 const addElemMod = (itemObj, gearPiece, generatedItem) => {
@@ -122,8 +129,7 @@ const addElemMod = (itemObj, gearPiece, generatedItem) => {
 }
 
 const generateItemName = (generatedItem) => {
-  const itemName = `${generatedItem["elemMod"].name} ${generatedItem["quality"].name} ${generatedItem["prefix"].name} ${generatedItem["material"].name} ${generatedItem["item"].name} ${generatedItem["suffix"].name}`;
-  generatedItem["name"] = itemName;
+  generatedItem["name"] = `${generatedItem["elemMod"].name} ${generatedItem["quality"].name} ${generatedItem["prefix"].name} ${generatedItem["material"].name} ${generatedItem["item"].name} ${generatedItem["suffix"].name}`;
 }
 
 const calculateDamArm = (generatedItem) => {
@@ -182,13 +188,13 @@ const randomNum = (min, max) => {
 const prettifyModifiers = (arr, obj) => {
   return arr.map((index, value) => {
     if(obj[index] < 1) {
-      return '+' + Math.floor(obj[index] * 100) + '% ' + index;
+      return `+${Math.floor(obj[index] * 100)}%  ${index}`;
     }
     else if (index === 'Damage') {
-      return '+' + obj[index] + '% Increased Weapon ' + index;
+      return `+${obj[index]}% Increased Weapon ${index}`;
     }
     else {
-      return '+' + obj[index] + ' ' + index;
+      return `+${obj[index]} ${index}`;
     }
   });
 }
@@ -211,31 +217,30 @@ const createComponent = (type, children, classArr = []) => {
 }
 
 const createDamArmString = (arr, obj) => {
-  let wDam;
   if(arr === 'weapon') {
-    wDam = 'Damage: ' + obj.minDam + ' - ' + obj.maxDam + ' ' + obj.elemMod.elemType + " | Slot: " + obj.item.slot;
+    return `Damage: ${obj.minDam}  -  ${obj.maxDam} ${obj.elemMod.elemType} | Slot: ${obj.item.slot}`;
   }
-  else {
-    wDam = 'Armor: ' + obj.armorValue + " | Slot: " + obj.item.slot;
-  }
-  return wDam;
+  return `Armor: ${obj.armorValue} | Slot: ${obj.item.slot}`;
 }
 
 const determineRarity = (obj, arr) => {
   const namePanel = arr[0];
-  if(obj.elemMod.name != "" || obj.prefix.name != "" || obj.suffix.name != "") {
-    namePanel.style.backgroundColor = '#206720';
-    if(obj.elemMod.name != "" && obj.prefix.name != "" ||
-    obj.elemMod.name != "" && obj.suffix.name !="" ||
-    obj.prefix.name != "" && obj.suffix.name != "") {
-      namePanel.style.backgroundColor = '#2424a2';
+	const elemModName = obj.elemMod.name;
+	const prefixName = obj.prefix.name;
+	const suffixName = obj.suffix.name;
+  if(elemModName || prefixName || suffixName) {
+    let color = '#206720';
+    if(elemModName && prefixName || elemModName && suffixName ||
+    prefixName && suffixName) {
+      color = '#2424a2';
     }
-    if(obj.elemMod.name != "" && obj.prefix.name != "" && obj.suffix.name != "") {
-      namePanel.style.backgroundColor = 'Purple';
+    if(elemModName && prefixName && suffixName) {
+      color = 'Purple';
       if(obj.qualityLevel >= 1000) {
-        namePanel.style.backgroundColor = '#d35d13';
+        color = '#d35d13';
       }
     }
+		namePanel.style.backgroundColor = color;
   }
 }
 
@@ -267,7 +272,7 @@ gId('itemGen').addEventListener('click', () => {
         itemProps.push(wStat);
       }
 
-      const wCost = createComponent('p', ['Cost: ' + newItem.cost + 'g']);
+      const wCost = createComponent('p', [`Cost: ${newItem.cost.toLocaleString()} g`]);
       itemProps.push(wCost);
 
       const innerContainer = createComponent('div', itemProps, ['weaponContainer']);
