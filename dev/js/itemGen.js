@@ -2,17 +2,6 @@ const gId = (elemId) => {
   return document.getElementById(elemId);
 }
 
-// const checkProps = (itemObj, gearPiece, qual) => {
-//   if(!itemObj.qualityLevels[qual].applicableGearTypes.hasOwnProperty(gearPiece.type) ||
-//   itemObj.qualityLevels[qual].tier > gearPiece.tier ||
-//   !itemObj.qualityLevels[qual].applicableMaterial.hasOwnProperty(gearPiece.materialType)) {
-//     return false;
-//   }
-//   else {
-//     return true;
-//   }
-// }
-
 const checkProps = (itemObj, {type, materialType, tier: gearTier}, qual) => {
   const {
     applicableGearTypes,
@@ -95,25 +84,29 @@ const addPreSuf = (itemObj, gearPiece, generatedItem) => {
   generatedItem['suffix'] = check[1];
 }
 
-const calculateModifiers = (generatedItem) => {
+function calculateModifiers(generatedItem) {
   generatedItem['modifiers'] = {};
-  if (generatedItem.prefix.name != '') {
-    Object.keys(generatedItem.prefix.statMod).forEach((index) => {
-       generatedItem['modifiers'][generatedItem.prefix.statMod[index]] = randomNum(generatedItem.prefix.lowerModAmt[index],
-       generatedItem.prefix.upperModAmt[index]);
-    });
+  if(generatedItem.prefix.name !== "") {
+	  generatedItem['modifiers'] = Object.assign(generatedItem['modifiers'],Object.keys(generatedItem.prefix.statMod).reduce((a, b, i) =>
+    {
+      a[generatedItem.prefix.statMod[i]] = randomNum(generatedItem.prefix.lowerModAmt[i],
+      generatedItem.prefix.upperModAmt[i]);
+			return a;
+    }, {}));
   }
-  if (generatedItem.suffix.name != '') {
-    Object.keys(generatedItem.suffix.statMod).forEach((index) => {
-      const calculatedSuffixMod = randomNum(generatedItem.suffix.lowerModAmt[index], generatedItem.suffix.upperModAmt[index])
-      if (generatedItem['modifiers'].hasOwnProperty(generatedItem.suffix.statMod[index])) {
-        generatedItem['modifiers'][generatedItem.suffix.statMod[index]] += calculatedSuffixMod;
-      }
-      else {
-        generatedItem['modifiers'][generatedItem.suffix.statMod[index]] = calculatedSuffixMod;
-      }
-    });
+  if(generatedItem.suffix.name !== ""){
+    generatedItem['modifiers'] = Object.assign(generatedItem['modifiers'], Object.keys(generatedItem.suffix.statMod).reduce((a, b, i) =>
+    {
+			const calcSuffixMod = randomNum(generatedItem.suffix.lowerModAmt[i], generatedItem.suffix.upperModAmt[i])
+		  if(generatedItem['modifiers'].hasOwnProperty(generatedItem.suffix.statMod[i])) {
+			  a[generatedItem.suffix.statMod[i]] += calcSuffixMod;
+		  } else {
+			  a[generatedItem.suffix.statMod[i]] = calcSuffixMod;
+		  }
+		  return a
+		}, {}));
   }
+  return generatedItem['modifiers'];
 }
 
 const generateElemMod = (itemObj) => {
@@ -132,28 +125,36 @@ const generateItemName = (generatedItem) => {
   generatedItem["name"] = `${generatedItem["elemMod"].name} ${generatedItem["quality"].name} ${generatedItem["prefix"].name} ${generatedItem["material"].name} ${generatedItem["item"].name} ${generatedItem["suffix"].name}`;
 }
 
-const calculateDamArm = (generatedItem) => {
+const calculateItemStats = (generatedItem) => {
   if(generatedItem.item.type == 'weapon') {
-    let baseMinDam = Math.floor((generatedItem.item.minDam + generatedItem.material.minDamMod) * generatedItem.quality.damMod);
-    let baseMaxDam = Math.floor((generatedItem.item.maxDam + generatedItem.material.maxDamMod) * generatedItem.quality.damMod);
-    if (generatedItem.modifiers.hasOwnProperty('damage')) {
-      baseMinDam = Math.floor(baseMinDam + ( baseMinDam * (generatedItem.modifiers["Damage"] / 100)));
-      baseMaxDam = Math.floor(baseMinDam + ( baseMinDam * (generatedItem.modifiers["Damage"] / 100)));
-    }
-    if (generatedItem.elemMod.name != '') {
-      baseMinDam = Math.floor(baseMinDam + (baseMinDam * generatedItem.elemMod.damMod));
-      baseMaxDam = Math.floor(baseMaxDam + (baseMaxDam * generatedItem.elemMod.damMod));
-    }
-    generatedItem['minDam'] = baseMinDam;
-    generatedItem['maxDam'] = baseMaxDam;
+    calculateDamage(generatedItem);
   }
   else if(generatedItem.item.type == 'armor') {
-    const baseArmor = randomNum(generatedItem.item.minArmor, generatedItem.item.maxArmor);
-    if (generatedItem.elemMod.name != '') {
-      generatedItem['modifiers'][`${generatedItem.elemMod.elemType} Resistance`] = generatedItem.elemMod.resistance;
-    }
-    generatedItem['armorValue'] = Math.floor((baseArmor + generatedItem.material.armorMod) * generatedItem.quality.armorMod);
+    calculateArmor(generatedItem);
   }
+}
+
+const calculateDamage = (generatedItem) => {
+	let baseMinDam = Math.floor((generatedItem.item.minDam + generatedItem.material.minDamMod) * generatedItem.quality.damMod);
+	let baseMaxDam = Math.floor((generatedItem.item.maxDam + generatedItem.material.maxDamMod) * generatedItem.quality.damMod);
+	if (generatedItem.modifiers.hasOwnProperty('damage')) {
+		baseMinDam = Math.floor(baseMinDam + ( baseMinDam * (generatedItem.modifiers["Damage"] / 100)));
+		baseMaxDam = Math.floor(baseMinDam + ( baseMinDam * (generatedItem.modifiers["Damage"] / 100)));
+	}
+	if (generatedItem.elemMod.name != '') {
+		baseMinDam = Math.floor(baseMinDam + (baseMinDam * generatedItem.elemMod.damMod));
+		baseMaxDam = Math.floor(baseMaxDam + (baseMaxDam * generatedItem.elemMod.damMod));
+	}
+	generatedItem['minDam'] = baseMinDam;
+	generatedItem['maxDam'] = baseMaxDam;
+}
+
+const calculateArmor = generatedItem => {
+  const baseArmor = randomNum(generatedItem.item.minArmor, generatedItem.item.maxArmor);
+  if (generatedItem.elemMod.name != '') {
+    generatedItem['modifiers'][`${generatedItem.elemMod.elemType} Resistance`] = generatedItem.elemMod.resistance;
+  }
+  generatedItem['armorValue'] = Math.floor((baseArmor + generatedItem.material.armorMod) * generatedItem.quality.armorMod);
 }
 
 const calculateQuality = (generatedItem) => {
@@ -174,7 +175,7 @@ const generateWeapon = (weapon, type) => {
   calculateModifiers(newGenItem);
   addElemMod(weapon, newGenItem.item, newGenItem);
   generateItemName(newGenItem);
-  calculateDamArm(newGenItem);
+  calculateItemStats(newGenItem);
   calculateQuality(newGenItem);
   calculateCost(newGenItem);
   console.log(newGenItem);
