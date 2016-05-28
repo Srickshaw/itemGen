@@ -2,7 +2,7 @@ const gId = (elemId) => {
   return document.getElementById(elemId);
 }
 
-const checkProps = (itemObj, {type, materialType, tier: gearTier}, qual) => {
+const checkQuality = (itemObj, {type, materialType, tier: gearTier}, qual) => {
   const {
     applicableGearTypes,
     tier: qualityTier,
@@ -16,16 +16,19 @@ const checkProps = (itemObj, {type, materialType, tier: gearTier}, qual) => {
   );
 }
 
-const checkPreSuf = (itemObj, gearPiece, pre, suf) => {
-  if (itemObj.prefixes[pre].tier > gearPiece.tier && itemObj.suffixes[suf].tier > gearPiece.tier) {
+const checkPrefix = (itemObj, gearPiece, prefix) => {
+  if (itemObj.prefixes[prefix].tier > gearPiece.tier) {
     return false;
   }
-  return [
-    itemObj.prefixes[pre],
-    itemObj.suffixes[suf]
-  ]
+  return itemObj.prefixes[prefix];
 }
 
+const checkSuffix = (itemObj, gearPiece, suffix) => {
+  if (itemObj.suffixes[suffix].tier > gearPiece.tier) {
+    return false;
+  }
+  return itemObj.suffixes[suffix];
+}
 
 const checkElemMod = (elemMod, gearPiece) => {
   if (elemMod.tier > gearPiece.tier) {
@@ -49,18 +52,14 @@ const generateMaterial = (itemObj, gearPiece) => {
   return itemObj.itemMaterials[gearPiece.materialType][itemMatPos];
 }
 
-const generateItem = (itemObj, gearType) => {
-  const generatedItem = {};
-  generatedItem["item"] = generateBaseItem(itemObj, gearType);
-  generatedItem["material"] = generateMaterial(itemObj, generatedItem["item"]);
-  let itemQualityPos =  generateQuality(itemObj);
-  let iProps = checkProps(itemObj, generatedItem["item"], itemQualityPos);
+const addQualityLevel = (itemObj, generatedItem) => {
+	let itemQualityPos =  generateQuality(itemObj);
+  let iProps = checkQuality(itemObj, generatedItem["item"], itemQualityPos);
   while(iProps === false) {
     itemQualityPos =  generateQuality(itemObj);
-    iProps = checkProps(itemObj, generatedItem["item"], itemQualityPos);
+    iProps = checkQuality(itemObj, generatedItem["item"], itemQualityPos);
   }
-  generatedItem["quality"] = itemObj.qualityLevels[itemQualityPos];
-  return generatedItem;
+  return itemObj.qualityLevels[itemQualityPos];
 }
 
 const generateQuality = (itemObj) => {
@@ -75,30 +74,40 @@ const generateSuffix = (itemObj) => {
   return randomNum(0, (itemObj.prefixes.length - 1));
 }
 
-const addPreSuf = (itemObj, gearPiece, generatedItem) => {
-  let check = checkPreSuf(itemObj, gearPiece, generatePrefix(itemObj), generateSuffix(itemObj));
-  while (check == false) {
-    check = checkPreSuf(itemObj, gearPiece, generatePrefix(itemObj), generateSuffix(itemObj))
-	}
-  generatedItem['prefix'] = check[0];
-  generatedItem['suffix'] = check[1];
+function addPrefix(itemObj, gearPiece) {
+  let prefixCheck = checkPrefix(itemObj, gearPiece, generatePrefix(itemObj));
+  while (prefixCheck === false) {
+    prefixCheck = checkPrefix(itemObj, gearPiece, generatePrefix(itemObj));
+  }
+  return prefixCheck;
+}
+
+function addSuffix(itemObj, gearPiece) {
+  let suffixCheck = checkSuffix(itemObj, gearPiece, generateSuffix(itemObj));
+  while (suffixCheck === false) {
+    suffixCheck = checkSuffix(itemObj, gearPiece, generateSuffix(itemObj));
+  }
+  return suffixCheck;
 }
 
 function calculateModifiers(generatedItem) {
-  generatedItem['modifiers'] = {};
+  let modifiers = {};
   if(generatedItem.prefix.name !== "") {
-    generatedItem['modifiers'] = Object.assign(generatedItem['modifiers'],Object.keys(generatedItem.prefix.statMod).reduce((a, b, i) =>
+    modifiers = Object.assign(modifiers,Object.keys(generatedItem.prefix.statMod).reduce((a, b, i) =>
     {
-      a[generatedItem.prefix.statMod[i]] = randomNum(generatedItem.prefix.lowerModAmt[i],
-      generatedItem.prefix.upperModAmt[i]);
+      a[generatedItem.prefix.statMod[i]] = randomNum(generatedItem.prefix.lowerModAmt[i], generatedItem.prefix.upperModAmt[i]);
       return a;
     }, {}));
   }
+	console.log(modifiers)
   if(generatedItem.suffix.name !== ""){
-    generatedItem['modifiers'] = Object.assign(generatedItem['modifiers'], Object.keys(generatedItem.suffix.statMod).reduce((a, b, i) =>
+    modifiers = Object.assign(modifiers, Object.keys(generatedItem.suffix.statMod).reduce((a, b, i) =>
     {
       const calcSuffixMod = randomNum(generatedItem.suffix.lowerModAmt[i], generatedItem.suffix.upperModAmt[i])
-      if(generatedItem['modifiers'].hasOwnProperty(generatedItem.suffix.statMod[i])) {
+			console.log(`${generatedItem.suffix.statMod[i]} amount: ${calcSuffixMod}`);
+			console.log(modifiers.hasOwnProperty(generatedItem.suffix.statMod[i]));
+      if(modifiers.hasOwnProperty(generatedItem.suffix.statMod[i])) {
+				console.log(a[generatedItem.suffix.statMod[i]])
         a[generatedItem.suffix.statMod[i]] += calcSuffixMod;
       } else {
         a[generatedItem.suffix.statMod[i]] = calcSuffixMod;
@@ -106,7 +115,7 @@ function calculateModifiers(generatedItem) {
       return a
     }, {}));
   }
-  return generatedItem['modifiers'];
+  return modifiers;
 }
 
 const generateElemMod = (itemObj) => {
@@ -118,25 +127,27 @@ const addElemMod = (itemObj, gearPiece, generatedItem) => {
   while(checkElem === false) {
     checkElem = checkElemMod(itemObj.elemMods[generateElemMod(itemObj)], gearPiece);
   }
-  generatedItem['elemMod'] = checkElem;
+	console.log(checkElem);
+  return checkElem;
 }
 
 const generateItemName = (generatedItem) => {
-  generatedItem["name"] = `${generatedItem["elemMod"].name} ${generatedItem["quality"].name} ${generatedItem["prefix"].name} ${generatedItem["material"].name} ${generatedItem["item"].name} ${generatedItem["suffix"].name}`;
+  return `${generatedItem["elemMod"].name} ${generatedItem["quality"].name} ${generatedItem["prefix"].name} ${generatedItem["material"].name} ${generatedItem["item"].name} ${generatedItem["suffix"].name}`;
 }
 
 const calculateItemStats = (generatedItem) => {
   if(generatedItem.item.type == 'weapon') {
-    calculateDamage(generatedItem);
+    return calculateDamage(generatedItem);
   }
   else if(generatedItem.item.type == 'armor') {
-    calculateArmor(generatedItem);
+    return calculateArmor(generatedItem);
   }
 }
 
 const calculateDamage = (generatedItem) => {
   let baseMinDam = Math.floor((generatedItem.item.minDam + generatedItem.material.minDamMod) * generatedItem.quality.damMod);
   let baseMaxDam = Math.floor((generatedItem.item.maxDam + generatedItem.material.maxDamMod) * generatedItem.quality.damMod);
+  const weaponDamage = {}
   if (generatedItem.modifiers.hasOwnProperty('damage')) {
     baseMinDam = Math.floor(baseMinDam + ( baseMinDam * (generatedItem.modifiers["Damage"] / 100)));
     baseMaxDam = Math.floor(baseMinDam + ( baseMinDam * (generatedItem.modifiers["Damage"] / 100)));
@@ -145,39 +156,46 @@ const calculateDamage = (generatedItem) => {
     baseMinDam = Math.floor(baseMinDam + (baseMinDam * generatedItem.elemMod.damMod));
     baseMaxDam = Math.floor(baseMaxDam + (baseMaxDam * generatedItem.elemMod.damMod));
   }
-  generatedItem['minDam'] = baseMinDam;
-  generatedItem['maxDam'] = baseMaxDam;
+  weaponDamage['minDam'] = baseMinDam;
+  weaponDamage['maxDam'] = baseMaxDam;
+  return weaponDamage
 }
+
 
 const calculateArmor = generatedItem => {
   const baseArmor = randomNum(generatedItem.item.minArmor, generatedItem.item.maxArmor);
+  const a = {};
   if (generatedItem.elemMod.name != '') {
     generatedItem['modifiers'][`${generatedItem.elemMod.elemType} Resistance`] = generatedItem.elemMod.resistance;
   }
-  generatedItem['armorValue'] = Math.floor((baseArmor + generatedItem.material.armorMod) * generatedItem.quality.armorMod);
+	a['armorValue'] = Math.floor((baseArmor + generatedItem.material.armorMod) * generatedItem.quality.armorMod);
+  return a;
 }
 
 const calculateQuality = (generatedItem) => {
-  generatedItem['qualityLevel'] = Math.floor((generatedItem.item.baseQuality + generatedItem.material.qualityMod +
+  return Math.floor((generatedItem.item.baseQuality + generatedItem.material.qualityMod +
   generatedItem.elemMod.qualityMod + generatedItem.prefix.qualityMod + generatedItem.suffix.qualityMod) *
   generatedItem.quality.qualityMod);
 };
 
 const calculateCost = (generatedItem) => {
-  generatedItem['cost'] = Math.ceil((generatedItem.item.baseCost * generatedItem.material.costMod *
+  return Math.ceil((generatedItem.item.baseCost * generatedItem.material.costMod *
     generatedItem.elemMod.costMod * generatedItem.prefix.costMod * generatedItem.suffix.costMod) *
     generatedItem.quality.costMod);
 }
 
 const generateWeapon = (weapon, type) => {
-  const newGenItem = generateItem(weapon, type);
-  addPreSuf(weapon, newGenItem.item, newGenItem);
-  calculateModifiers(newGenItem);
-  addElemMod(weapon, newGenItem.item, newGenItem);
-  generateItemName(newGenItem);
-  calculateItemStats(newGenItem);
-  calculateQuality(newGenItem);
-  calculateCost(newGenItem);
+  const newGenItem = {};
+  newGenItem['item'] = generateBaseItem(weapon, type);
+  newGenItem['material'] = generateMaterial(weapon, newGenItem['item']);
+  newGenItem['quality'] = addQualityLevel(weapon, newGenItem);
+  newGenItem['elemMod'] = addElemMod(weapon, newGenItem['item'], newGenItem);
+  newGenItem['prefix'] = addPrefix(weapon, newGenItem['item']);
+  newGenItem['suffix'] = addSuffix(weapon, newGenItem['item']);
+  newGenItem['modifiers'] = calculateModifiers(newGenItem);
+  newGenItem['mainStat'] = calculateItemStats(newGenItem);
+  newGenItem['name'] = generateItemName(newGenItem);
+  newGenItem['cost'] = calculateCost(newGenItem);
   console.log(newGenItem);
   return newGenItem;
 }
@@ -186,16 +204,16 @@ const randomNum = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const prettifyModifiers = (arr, obj) => {
-  return arr.map((index, value) => {
-    if(obj[index] < 1) {
-      return `+${Math.floor(obj[index] * 100)}%  ${index}`;
+const prettifyModifiers = (modifierKeys, modifiers) => {
+  return modifierKeys.map((index, value) => {
+    if(modifiers[index] < 1) {
+      return `+${Math.floor(modifiers[index] * 100)}%  ${index}`;
     }
     else if (index === 'Damage') {
-      return `+${obj[index]}% Increased Weapon ${index}`;
+      return `+${modifiers[index]}% Increased Weapon ${index}`;
     }
     else {
-      return `+${obj[index]} ${index}`;
+      return `+${modifiers[index]} ${index}`;
     }
   });
 }
@@ -217,31 +235,31 @@ const createComponent = (type, children, classArr = []) => {
   return newElement;
 }
 
-const createDamArmString = (arr, obj) => {
-  if(arr === 'weapon') {
-    return `Damage: ${obj.minDam}  -  ${obj.maxDam} ${obj.elemMod.elemType} | Slot: ${obj.item.slot}`;
+const createDamArmString = (itemType, itemObj) => {
+  if(itemType === 'weapon') {
+    return `Damage: ${itemObj.mainStat.minDam}  -  ${itemObj.mainStat.maxDam} ${itemObj.elemMod.elemType} | Slot: ${itemObj.item.slot}`;
   }
-  return `Armor: ${obj.armorValue} | Slot: ${obj.item.slot}`;
+  return `Armor: ${itemObj.mainStat.armorValue} | Slot: ${itemObj.item.slot}`;
 }
 
-const determineRarity = (obj, arr) => {
-  const namePanel = arr[0];
-  const elemModName = obj.elemMod.name;
-  const prefixName = obj.prefix.name;
-  const suffixName = obj.suffix.name;
+const determineRarity = (itemObj, htmlElementArray) => {
+  const namePanel = htmlElementArray[0];
+  const elemModName = itemObj.elemMod.name;
+  const prefixName = itemObj.prefix.name;
+  const suffixName = itemObj.suffix.name;
   if(elemModName || prefixName || suffixName) {
-    let color = '#206720';
+    let namePlateClass = 'nameplate-uncommon';
     if(elemModName && prefixName || elemModName && suffixName ||
     prefixName && suffixName) {
-      color = '#2424a2';
+      namePlateClass = 'nameplate-rare';
     }
     if(elemModName && prefixName && suffixName) {
-      color = 'Purple';
-      if(obj.qualityLevel >= 1000) {
-        color = '#d35d13';
+      namePlateClass = 'nameplate-epic';
+      if(itemObj.qualityLevel >= 1000) {
+        namePlateClass = 'nameplate-legendary';
       }
     }
-    namePanel.style.backgroundColor = color;
+    namePanel.classList.add(namePlateClass);
   }
 }
 
