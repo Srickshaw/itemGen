@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Condensed';
+}
+
+.itemGenButton {
+  background: #33aa33 none repeat scroll 0 0;
+  border-radius: 8px;
+  box-shadow: 0 6px 0 #267426;
+  color: white;
+  cursor: pointer;
+  margin: 15px auto 0;
+  -moz-user-select: none;
+  padding: 10px 30px;
+  text-align: center;
+  -webkit-user-select: none;
+  width: 100px;
+}
+.weaponCard {
+  border: 2px solid #ccc;
+  width: 500px;
+  margin: 20px;;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+.weaponCard p:not(:first-child), .stat-container {
+  padding: 10px 0 10px 10px;
+  margin: 0;
+}
+
+.weaponCard > p:first-child{
+  border-top: 0;
+  margin: 0;
+}
+
+.weaponCard > p, .weaponCard > div {
+  border-top: 1px solid #ccc;
+}
+
+.wName {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.nameplate-uncommon {
+  background-color: #206720;
+}
+
+.nameplate-rare {
+  background-color: #2424a2;
+}
+
+.nameplate-epic {
+  background-color: Purple;
+}
+
+.nameplate-legendary {
+  background-color: #d35d13;
+}
+
+.stat-container > p.wMod {
+  padding: 0;
+}
+.wrapper {
+  width: 1170px;
+  margin: 0 auto;
+}
+
+.stat-container p.modString {
+  margin: 3px 0;
+  padding: 0;
+}

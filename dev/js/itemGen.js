@@ -53,7 +53,7 @@ const generateMaterial = (itemObj, gearPiece) => {
 }
 
 const addQualityLevel = (itemObj, generatedItem) => {
-	let itemQualityPos =  generateQuality(itemObj);
+  let itemQualityPos =  generateQuality(itemObj);
   let iProps = checkQuality(itemObj, generatedItem["item"], itemQualityPos);
   while(iProps === false) {
     itemQualityPos =  generateQuality(itemObj);
@@ -104,10 +104,7 @@ function calculateModifiers(generatedItem) {
     modifiers = Object.assign(modifiers, Object.keys(generatedItem.suffix.statMod).reduce((a, b, i) =>
     {
       const calcSuffixMod = randomNum(generatedItem.suffix.lowerModAmt[i], generatedItem.suffix.upperModAmt[i])
-			console.log(`${generatedItem.suffix.statMod[i]} amount: ${calcSuffixMod}`);
-			console.log(modifiers.hasOwnProperty(generatedItem.suffix.statMod[i]));
-      if(modifiers.hasOwnProperty(generatedItem.suffix.statMod[i])) {
-				console.log(a[generatedItem.suffix.statMod[i]])
+      if(a.hasOwnProperty(generatedItem.suffix.statMod[i])) {
         a[generatedItem.suffix.statMod[i]] += calcSuffixMod;
       } else {
         a[generatedItem.suffix.statMod[i]] = calcSuffixMod;
@@ -168,7 +165,7 @@ const calculateArmor = generatedItem => {
   if (generatedItem.elemMod.name != '') {
     generatedItem['modifiers'][`${generatedItem.elemMod.elemType} Resistance`] = generatedItem.elemMod.resistance;
   }
-	a['armorValue'] = Math.floor((baseArmor + generatedItem.material.armorMod) * generatedItem.quality.armorMod);
+  a['armorValue'] = Math.floor((baseArmor + generatedItem.material.armorMod) * generatedItem.quality.armorMod);
   return a;
 }
 
@@ -220,9 +217,8 @@ const prettifyModifiers = (modifierKeys, modifiers) => {
 
 const createComponent = (type, children, classArr = []) => {
   let newElement = document.createElement(type);
-  classArr.forEach((cssClass) =>
-    newElement.setAttribute('class', cssClass)
-  )
+  const cssClassesToAdd = classArr.join(' ');
+  newElement.setAttribute('class', cssClassesToAdd);
   children.forEach((index) => {
     if (typeof index === 'string') {
       let newText = document.createTextNode(index);
@@ -242,8 +238,7 @@ const createDamArmString = (itemType, itemObj) => {
   return `Armor: ${itemObj.mainStat.armorValue} | Slot: ${itemObj.item.slot}`;
 }
 
-const determineRarity = (itemObj, htmlElementArray) => {
-  const namePanel = htmlElementArray[0];
+const determineRarity = (itemObj) => {
   const elemModName = itemObj.elemMod.name;
   const prefixName = itemObj.prefix.name;
   const suffixName = itemObj.suffix.name;
@@ -259,8 +254,16 @@ const determineRarity = (itemObj, htmlElementArray) => {
         namePlateClass = 'nameplate-legendary';
       }
     }
-    namePanel.classList.add(namePlateClass);
+    return namePlateClass;
   }
+}
+
+const iterativeFunc = (maxValue, callback) => {
+  let genericItemArray = [];
+  for (let i = 0; i < maxValue; i++) {
+    genericItemArray.push(callback(i));
+  }
+  return genericItemArray;
 }
 
 gId('itemGen').addEventListener('click', () => {
@@ -270,33 +273,27 @@ gId('itemGen').addEventListener('click', () => {
   })
   .done(function(data) {
     gId('weaponContainer').innerHTML = '';
-    const weaponDiv = document.createElement('div');
-    for(let i = 0; i < 6; i++) {
+    const weaponDiv = createComponent('div', iterativeFunc(6, (i) => {
       const itemTypeValue = randomNum(0, (Object.keys(data.itemTypes).length - 1));
       console.log("=========================");
       console.log("Data for " + Object.keys(data.itemTypes)[itemTypeValue] + " #" + (i + 1));
       console.log("=========================");
-      const itemProps = [];
       const newItem = generateWeapon(data, Object.keys(data.itemTypes)[itemTypeValue]);
-      const wName = createComponent('p', [newItem.name], ['wName']);
-      itemProps.push(wName);
-      determineRarity(newItem, itemProps);
-
-      const weaponDam = createComponent('p', [createDamArmString(newItem.item.type, newItem)]);
-      itemProps.push(weaponDam);
-
-      if(Object.keys(newItem.modifiers).length > 0) {
-        const mods = prettifyModifiers(Object.keys(newItem.modifiers), newItem.modifiers);
-        const wStat = createComponent('div', mods.map((mod) => createComponent('p', [mod], ['modString'])), ['stat-container']);
-        itemProps.push(wStat);
-      }
-
       const wCost = createComponent('p', [`Cost: ${newItem.cost.toLocaleString()} g`]);
-      itemProps.push(wCost);
-
-      const innerContainer = createComponent('div', itemProps, ['weaponContainer']);
-      weaponDiv.appendChild(innerContainer);
-    }
+      return createComponent('div', (function(){
+        const itemProps = [
+          createComponent('p', [newItem.name], ['wName', determineRarity(newItem)]),
+          createComponent('p', [createDamArmString(newItem.item.type, newItem)])
+        ];
+        if (Object.keys(newItem.modifiers).length > 0) {
+          const mods = prettifyModifiers(Object.keys(newItem.modifiers), newItem.modifiers);
+          const wStat = createComponent('div', mods.map((mod) => createComponent('p', [mod], ['modString'])), ['stat-container']);
+          itemProps.push(wStat);
+        }
+        itemProps.push(wCost);
+        return itemProps;
+      })(), ['weaponCard']);
+    }));
     gId('weaponContainer').appendChild(weaponDiv);
   })
 });
